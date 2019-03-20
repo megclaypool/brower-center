@@ -1,0 +1,37 @@
+#sidebar-left ul.links li a.active
+{
+	background-color: #f15624; /* f94c04 changed to f15624 */
+}
+#content-area h1, #content-area a
+{
+	color: #f15624;
+}
+
+/* <li  class="menu-2-5-150"><a href="/v2/?q=rentals/overview" class="menu-2-5-150 active">Rentals at a Glance</a></li> */
+
+/*#sidebar-left ul.links li.menu-2-5-150 a.active
+{
+	background-color: white;
+}
+
+#sidebar-left ul.links li.menu-2-5-150
+{
+	padding-top: 1.5em;
+}
+
+#sidebar-left ul.links li.menu-2-5-150 a
+{
+	color: #f15624;
+	font-weight: bold;
+	border-top: #f15624 1px dashed;
+	padding-left: 0;
+	margin-left: 14px;
+	display: inline;
+	padding-top: 1.0em;
+}*/
+
+th, tbody th, thead th, td
+{
+	padding: 0.3em 1em 0.3em 0;
+	
+}

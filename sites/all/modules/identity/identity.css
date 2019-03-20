@@ -1,0 +1,19 @@
+/* Image in Text Box */
+
+form#user-login input#edit-name, form#user-login-form input#edit-name {
+  background-color: #FFF;
+  background-image: url('https://www.ufp.com/identity.png');
+  background-repeat:no-repeat;
+  background-position: 2px center;
+  text-indent: 15px;
+}
+
+#user-id {
+  background:url('https://www.ufp.com/identity.png') no-repeat 2px 2px;
+  padding:2px 2px 4px 20px;
+}
+
+#edit-submit.form-submit {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

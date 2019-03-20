@@ -1,0 +1,338 @@
+.navbar-toggle{
+  display: block;
+  padding-top: 0;
+  margin-top: -6px;
+}
+
+.mobile-banner {
+  position: fixed;
+  z-index: 201;
+  top: -1px;
+  background: #fff;
+  padding: 22px 20px;
+  right: 0;
+  height: 60px;
+  width: 50%;
+}
+
+#sidebar-wrapper.on{
+  left:0;
+  margin: 58px 0 0 0;
+  width: 100%;
+  #menu-primary-navigation{
+    margin-left: -10px;
+    li{
+      margin-top: 25px;
+      a{
+        color: $basic-grey;
+        text-transform: uppercase;
+        border: none;
+        &:active,&:focus{
+          color: $second-color-nav;
+          background-color: transparent;
+          border-bottom: solid 1px $second-color-nav;
+        }
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+    .fa{
+      color: $second-color-nav;
+    }    
+  }
+}
+
+.mainHeader {
+  margin-bottom: 0;
+  border-radius: 0;
+  font-family: $font-stack;
+  position: fixed;
+  z-index: 200;
+  top: 0;
+  .container{
+    padding-left: 2px;
+    h1{
+      background: url("../images/dbc_ann_logo.png") 0 0 no-repeat;
+      background-size: contain;
+      height: 51px;
+      width: 200px;
+      margin: 4px 0 0 0;
+      // Hide-text
+      text-indent: 110%;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  .secNav{
+    float: right;
+    text-transform: capitalize;
+    font-size: 12px;
+    a{
+      color: $second-color-nav;
+    }
+  }
+  .fa-search{
+    float: right;
+    margin-top: -46px;
+    font-size: 21px;
+    color: rgba($base-color_icon, .7);
+  }
+}
+
+.top-header {
+  margin: 20px 15px 0 25px;
+
+  a {
+    border-bottom: 0 none !important;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 7px;
+    margin-bottom: 20px;
+    opacity: 1 !important;
+  }
+
+  .btn-primary {
+    position: relative;
+    margin-bottom: 0;
+    background-color: white;
+    color: $action-color-3;
+    border-bottom: 1px solid $action-color-3 !important;
+    border: 1px solid $action-color-3;
+    @include transition(all 250ms linear);
+
+    &:hover {
+      background-color: $action-color-3;
+      color: white;
+      @include transition(all 250ms linear);
+
+      .fa {
+        transform: rotate(0deg);
+        @include transition(all 250ms linear);
+        color: white !important;
+      }
+    }
+
+    .fa {
+      position: absolute;
+      font-size: 12px !important;
+      top: 28% !important;
+      margin-left: 11px;
+    }
+
+
+  }
+
+  .collapsed {
+
+    &.in {
+      .fa {
+        transform: rotate(180deg);
+        @include transition(all 250ms linear);
+      }
+    }
+  }
+
+  form {
+    border: 1px solid #d1d1d1;
+    position:relative;
+    height: 45px;
+
+    input[type="email"] {
+      padding: 0 10px;
+      top: 0px;
+      position: relative;
+      margin: 0;
+      height: 43px;
+    }
+
+    input[type="submit"] {
+      position:absolute;
+      top: -1px;
+      right: 0;
+      height: 45px;
+      background-color: $action-color-3;
+      color: white;
+      padding: 0 10px;
+      margin: 0;      
+    }
+  }
+
+  .header-social {
+    margin: 20px auto 0;
+    width: 151px;    
+  }  
+}
+
+@media screen and (min-width: 992px){
+  .mobile-banner{
+    position: absolute;
+    .navbar-toggle{
+      display: none;
+    }
+  }
+  .mainHeader{
+    position: absolute;
+    box-sizing: content-box;
+    width: 100%;
+    background-color: #fff;
+    .container{
+      padding-left: 0;
+      width: 1040px;
+      margin: 0 auto;
+      h1{
+        margin: -73px 0 0;
+        background-size: contain;
+        height: 107px;
+      }
+    }
+    .navbar{
+      clear: both;
+      margin-bottom: 0;
+      min-height: 1px;
+      border: 0 none;
+      #menu-primary-navigation-1{
+        li{
+          font-size: 12px;
+          text-transform: uppercase;
+          a{
+            color: $base-color-nav;
+            border-radius: 0;
+            padding: 10px 2px;
+            margin: 0 13px;
+            &:hover,&:focus{
+              color: $second-color-nav;
+              background-color: transparent;
+              border-bottom: solid 4px $second-color-nav;
+              padding-bottom: 6px;
+              transition-delay: .25s;
+            }
+          }
+          .dropdown-menu li {
+            /* prevents text from showing before teal bg */
+            opacity: 0;
+            @include transition(all 500ms ease 1500ms);
+          }          
+          &:hover{
+            .dropdown-menu{
+              display: block;
+              background: none;
+              border: none;
+              box-shadow: none;
+              width: 900px;
+              padding: 0;
+              margin: 0;
+              margin-top: -2px;
+              li{
+                float: left;
+                text-transform: capitalize;
+                /* prevents text from showing before teal bg */
+                opacity: 1;
+                @include transition(all 500ms ease 1500ms);                
+                a{
+                  color: $text-on-color;
+                  letter-spacing: 0.6px;
+                  padding-top: 15px;
+                  &:hover,&:focus{
+                    border-bottom: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+        /* deal with sub-menu running off screen */
+        li.menu-item-1221 .dropdown-menu {
+          left: -375px;
+        }
+        li.menu-item-1244 .dropdown-menu,
+        li.menu-item-1209 .dropdown-menu {
+          left: -275px;
+        }        
+      }
+    }
+  }
+
+.top-header {
+  margin: 5px 0 0;
+  clear: both;
+  height: 78px;
+  overflow: hidden;
+
+  .btn {
+    margin-bottom: 0;
+  }
+
+  .top-header-item {
+    float: right;
+  }
+
+  .header-donate {
+    .btn {
+      width: 150px;
+      font-size: 12px;
+      padding: 8px 0 7px;
+      min-height: 1px;
+    }
+  }
+
+  .header-newsletter {
+    margin-left: 10px;
+
+    .btn {
+      width: 250px;
+      font-size: 12px;
+    }
+  }
+
+  form {
+    height: 33px;
+
+    input[type="submit"] {
+      top: 0;
+      height: 31px;
+      font-size: 12px;
+      text-indent: -99999px;
+      background-image: url(../images/arrow.png);
+      background-repeat: no-repeat;
+      background-position: 10px 9px;
+      width: 34px;
+      background-size: 13px; 
+    }
+
+    input[type="email"] {
+      height: 29px;
+      font-size: 12px;
+      width: 100%;
+      border: 0;      
+    }
+  }  
+
+  .header-social {
+    margin: 0 10px;
+    width: auto;    
+
+    .fa-stack {
+      font-size: 17px;
+    }
+  }  
+}  
+}
+@media screen and (min-width: 1200px){
+  .mainHeader{
+    .container{
+      h1{
+        background-position: 0;
+      }
+    }
+    .navbar{
+      #menu-primary-navigation-1{
+        li{
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}

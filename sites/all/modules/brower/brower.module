@@ -1,0 +1,311 @@
+<?php
+
+/** 
+  * @file
+  * 1. Validates reservation submission form so users cannot book room more than 3 months out.
+  * 2. Validates form so a user cannot schedule a meeting for more than 4 hours per day
+  * 3. Validates form so room can only be booked during open hours
+  * 4. Emails confirmation to user
+*/
+
+/**
+  * Implements hook_form_alter().
+*/
+
+function brower_form_reservation_node_form_alter(&$form, &$form_state, $form_id) {
+	$form['#validate'][] = 'brower_reservation_validate';
+}
+
+function brower_reservation_validate(&$form, &$form_state) {
+
+	$node = $form_state['node'];
+	$type = $node->type;
+	$nid = 0;
+	$nid = $node->nid;
+	if (!$nid) $nid = 0; 
+
+	if ($type == 'reservation') {
+
+		$room_open = '7:00am';
+		$room_close = '10:00pm';
+
+		$start_date = $form_state['input']['field_date_of_event']['und'][0]['value']['date'];
+		$end_date = $form_state['input']['field_date_of_event']['und'][0]['value2']['date'];
+		$start_time = $form_state['input']['field_date_of_event']['und'][0]['value']['time'];
+		$end_time = $form_state['input']['field_date_of_event']['und'][0]['value2']['time'];
+	
+		$gmt_startdate = gmdate('Y-m-d H:i:s', strtotime($start_date . ' ' . $start_time) + 60);
+		$gmt_enddate = gmdate('Y-m-d H:i:s', strtotime($end_date . ' ' . $end_time) - 60);
+
+		global $user;
+		global $base_url;
+
+		// Error if this reservation overlaps with an existing one
+		// This isn't working correctly for recurring events
+		
+		$query = "SELECT {node}.nid, field_date_of_event_value, field_date_of_event_value2 FROM {node} INNER JOIN {field_data_field_date_of_event} 
+				ON {node}.nid = {field_data_field_date_of_event}.entity_id WHERE (";
+					
+		for ($i = 0; $i < count($form_state['input']['field_date_of_event']['und']); $i++) {
+			if ($i > 0) $query .= ' OR ';
+			$query .= "('" . $gmt_startdate . "' BETWEEN field_date_of_event_value AND field_date_of_event_value2) OR ";
+			$query .= "('" . $gmt_enddate . "' BETWEEN field_date_of_event_value AND field_date_of_event_value2)";
+		}
+		
+		$query .= ") AND {node}.nid != " . $nid;
+							
+		$result = db_query($query);
+
+		file_put_contents('/tmp/drupal_debug.log', print_r($result, TRUE), FILE_APPEND);
+	
+		foreach ($result as $record) {
+			file_put_contents('/tmp/drupal_debug.log', print_r($record, TRUE), FILE_APPEND);
+  			form_set_error('field_date_of_event', t('The conference room is already booked during that time.'));
+		}		
+		
+		// Error if start date is more than three months in advance
+		if (strtotime($start_date) >= strtotime('+3 months') && !array_key_exists('3', $user->roles)) { 
+			form_set_error('field_date_of_event', t('You may not book the room more than three months in advance. ' . $email_admin));
+		}
+	
+		// Error if room is booked after hours
+		if (strtotime($start_time) < strtotime($room_open) || strtotime($start_time) > strtotime($room_close) || 
+			strtotime($end_time) < strtotime($room_open) || strtotime($end_time) > strtotime($room_close)) { 
+			form_set_error('field_date_of_event', t('The room is only available from ' . $room_open . ' to ' . $room_close . '.'));
+		}	
+	}
+}
+
+/** 
+  * Implements hook_node_submit()
+  */
+  
+function brower_node_submit($node, $form, &$form_state) {
+	global $user;
+	global $base_url;
+
+	if ($node->type == 'reservation') {
+	
+		$module = 'brower';
+    	$key = 'confirmation';
+		$params = array();
+
+		$nid = $form['nid']['#value'];
+		if (!$nid) {
+			$result = db_query("SELECT nid FROM {node} ORDER BY nid DESC LIMIT 0, 1");
+			foreach ($result as $record) {
+  				$nid = ($record->nid) + 1;
+			}
+		}
+	
+		$start_date = $form_state['input']['field_date_of_event']['und'][0]['value']['date'];
+		$end_date = $form_state['input']['field_date_of_event']['und'][0]['value2']['date'];
+		$start_time = date('g:ia', strtotime($form_state['input']['field_date_of_event']['und'][0]['value']['time']));
+		$end_time = date('g:ia', strtotime($form_state['input']['field_date_of_event']['und'][0]['value2']['time']));
+		
+		// Error if room is booked for longer than 4 hours
+		if ((strtotime($end_date . ' ' . $end_time) - strtotime($start_date . ' ' . $start_time)) > 14400 && !array_key_exists('3', $user->roles)) {
+			// NOTE: forcing all events to be published (Steve Pierce for 42inc)
+			//node_unpublish_action($node);
+			node_save($node);
+		
+			$to = 'tenantservices@browercenter.org';
+
+			$from = 'tenantservices@browercenter.org';
+    		$subject = 'Brower Center Room Reservation: Event longer than four hours';
+    		$lines = array();
+    
+    		$lines[] = 'A reservation has been submitted that is longer than 4 hours.';
+	 		$lines[] = 'If you wish to cancel this event, please go here and delete it:';
+ 			$lines[] = $base_url . '/' . 'node/' . $nid . '/edit';
+ 	
+    		$message = drupal_mail($module, $key, $to, language_default(), $params, $from, FALSE);
+
+    		$message['subject'] = $subject;
+    		$message['body'] = $lines;
+
+    		// Retrieve the responsible implementation for this message.
+    		$system = drupal_mail_system($module, $key);
+
+    		// Format the message body.
+    		$message = $system->format($message);
+
+    		// Send e-mail.
+    		$message['result'] = $system->mail($message);
+
+			drupal_set_message('Your event is longer than four hours. It has been submitted, but will be reviewed by an administrator.', 'error');	
+
+		}
+				
+		$params = array();
+
+		$to = $form_state['input']['field_contact_email']['und'][0]['value'];
+
+		$from = 'tenantservices@browercenter.org';
+ 	   	$subject = 'Brower Center Room Reservation';
+  	  	$lines = array();
+    
+    	$lines[] = 'This is your confirmation for reserving the 2nd Floor Tenant Conference Room.';
+    
+   	 	for ($i = 0; $i < count($node->field_date_of_event['und']); $i++) {
+    		$start = date('l, M j, Y - g:ia', strtotime($node->field_date_of_event['und'][$i][value] . ' GMT'));
+    		$end = date('g:ia', strtotime($node->field_date_of_event['und'][$i][value2] . ' GMT'));
+    		$lines[] = $start . ' to ' . $end;
+    	}
+        
+		$lines[] = '-------------------';
+ 		$lines[] = '* Please remember to clean-up conference room before you leave.';
+ 		$lines[] = '* Wifi Access is available. Network: DBC Public; Password: DBC322public.';
+ 		$lines[] = '* Long distance calls cannot be made. Conference phone is available to tenants at the front desk.';
+ 		$lines[] = '* Data jacks available';
+ 		$lines[] = 'If you need to edit or cancel your booking, please click on the following link:';
+ 		$lines[] = $base_url . '/' . 'node/' . $nid;
+		$lines[] = 'Please login to make any changes to your reservation.';	
+ 	 	
+   	 	$message = drupal_mail($module, $key, $to, language_default(), $params, $from, FALSE);
+    
+    	$message['subject'] = $subject;
+    	$message['body'] = $lines;
+
+   	 	// Retrieve the responsible implementation for this message.
+    	$system = drupal_mail_system($module, $key);
+
+    	// Format the message body.
+    	$message = $system->format($message);
+
+    	// Send e-mail.
+    	$message['result'] = $system->mail($message);
+	}
+}
+
+
+/**
+  * Implements hook_node_delete().
+  */
+
+function brower_node_delete($node) {
+	if ($node->type == 'reservation') {
+	    $module = 'brower';
+    	$key = 'reminder';
+    	$params = array();
+		$to = $node->field_contact_email['und'][0]['value'];
+		$from = 'tenantservices@browercenter.org';
+    	$subject = 'Brower Center Room Reservation: Cancellation';
+		$lines = array();
+	    	
+    	$lines[] = 'This confirms that your reservation of the Brower Center Conference Room for the following date(s) has been cancelled:';
+   		
+   		for ($i = 0; $i < count($node->field_date_of_event['und']); $i++) {
+   			$lines[] = date('l, M j, Y - g:ia', strtotime($node->field_date_of_event['und'][$i][value] . ' GMT'));
+   		}
+   	
+   		$lines[] = 'If this was a mistake, you will need to reschedule your reservation.';	
+ 	 	
+		$message = drupal_mail($module, $key, $to, language_default(), $params, $from, FALSE);
+
+    	$message['subject'] = $subject;
+    	$message['body'] = $lines;
+	
+		// Retrieve the responsible implementation for this message.
+    	$system = drupal_mail_system($module, $key);
+
+		// Format the message body.
+    	$message = $system->format($message);
+
+		// Send e-mail.
+    	$message['result'] = $system->mail($message);
+
+	}
+}
+
+
+/**
+  * Implements hook_cron().
+  */
+
+
+function brower_cron() {
+  	global $base_url;
+    $module = 'brower';
+    $key = 'reminder';
+    $params = array();
+    
+	$type = "reservation"; 
+	
+	$query = "SELECT {node}.nid AS nid, {node}.type AS type, {field_data_field_date_of_event}.field_date_of_event_value AS event_date 
+		FROM {node} INNER JOIN {field_data_field_date_of_event} 
+		ON {node}.nid = {field_data_field_date_of_event}.entity_id 
+		WHERE field_date_of_event_value > NOW() AND type = 'reservation'";
+			
+	$result = db_query($query);
+	$allnids = array();
+	foreach ($result as $row) {
+  		array_push($allnids, $row->nid);
+	}
+	
+	$nids = array_unique($allnids);
+	
+	$query = 'SELECT nid, event_date FROM {brower_cal_notify}';
+	$result = db_query($query);
+	$used = array();
+	foreach ($result as $row) {
+		$item = array($row->nid, $row->event_date);
+  		array_push($used, $item);
+	}
+	
+	$from = 'tenantservices@browercenter.org';
+    $subject = 'Brower Center Room Reservation: Reminder';
+	
+	$out = '';
+
+	foreach ($nids as $nid) {
+		$node = node_load($nid); 
+		$to = $node->field_contact_email['und'][0]['value'];
+		
+		for ($i = 0; $i < count($node->field_date_of_event['und']); $i++) {
+			$start_date = $node->field_date_of_event['und'][$i]['value'];
+			$end_date = $node->field_date_of_event['und'][$i]['value2'];
+			$sent = false;
+						
+			foreach ($used as $usedevent) {
+				if ($usedevent[0] == $nid && $usedevent[1] == $start_date) $sent = true;
+			}
+			
+			if (!$sent) {
+				if ((strtotime($start_date . ' GMT') - time()) < 172800) {
+					$date = date('M j, Y g:ia', strtotime($start_date . ' GMT')) . ' - ' . date('g:ia', strtotime($end_date . ' GMT'));
+
+		    		$lines = array();
+	    	
+    				$lines[] = 'This is your reminder for reserving the Brower Center Conference Room on:';
+   		 			$lines[] = $date;
+ 					$lines[] = 'If you need to edit or cancel your reservation, you may do so here: ';
+ 					$lines[] = $base_url . '/' . 'node/' . $node->nid;
+ 	 	
+		    		$message = drupal_mail($module, $key, $to, language_default(), $params, $from, FALSE);
+
+    				$message['subject'] = $subject;
+    				$message['body'] = $lines;
+	
+					// Retrieve the responsible implementation for this message.
+    				$system = drupal_mail_system($module, $key);
+
+			   		// Format the message body.
+    				$message = $system->format($message);
+
+		    		// Send e-mail.
+    				$message['result'] = $system->mail($message);
+    		
+    				db_insert('brower_cal_notify')
+  					->fields(array(
+    					'nid' => $node->nid,
+    					'event_date' => $start_date,    				
+    					'date_notified' => date('Y-m-d H:i:s'),
+    				))
+  					->execute();
+  				}
+  			}
+    	}
+	}
+}
+

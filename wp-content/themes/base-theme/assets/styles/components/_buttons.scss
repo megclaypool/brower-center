@@ -1,0 +1,45 @@
+.button, .btn{
+	color: $text-on-color;
+	border-radius: 0;
+	text-transform: uppercase;
+	padding: 16px 0;
+	text-align:center;
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  &:hover, &:active, &:focus{
+    opacity: 0.8;
+    color: $text-on-color;
+  }
+	&.btn-pink{
+		background-color: $action-color-1;
+		min-height: 35px;
+		min-width: 100px;
+	}
+	&.btn-teal{
+		background-color: $action-color-3;
+		min-height: 35px;
+		min-width: 100px;
+	}
+}
+.btn.btn-default, .button{
+  background-color: $action-color-1;
+  border: none;
+  margin-top: 20px;
+}
+.fa-stack{
+	color: $action-color-3;
+	margin-right: 0;
+	font-size: 25px;
+	opacity: 1;
+	transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	-webkit-transition: opacity .25s ease-in-out;
+	&:hover{
+		opacity: 0.7;
+	}
+}
+input[type="submit"] {
+	padding: 16px 20px;
+}

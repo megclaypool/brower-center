@@ -1,0 +1,609 @@
+# Translation of Themes - Twenty Eleven in Japanese
+# This file is distributed under the same license as the Themes - Twenty Eleven package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-02-15 14:31:31+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Themes - Twenty Eleven\n"
+
+#. Description of the theme
+msgid "The 2011 theme for WordPress is sophisticated, lightweight, and adaptable. Make it yours with a custom menu, header image, and background -- then go further with available theme options for light or dark color scheme, custom link colors, and three layout choices. Twenty Eleven comes equipped with a Showcase page template that transforms your front page into a showcase to show off your best content, widget support galore (sidebar, three footer areas, and a Showcase page widget area), and a custom \"Ephemera\" widget to display your Aside, Link, Quote, or Status posts. Included are styles for print and for the admin editor, support for featured images (as custom header images on posts and pages and as large images on featured \"sticky\" posts), and special styles for six different post formats."
+msgstr "2011年版の WordPress テーマは洗練されていて、軽量で、柔軟性があります。メニュー、ヘッダー画像、背景をあなたなりにアレンジしてみてください。明と暗のカラースキーム、リンクカラー、3つのレイアウトオプションが利用できるようになっています。Twenty Eleven テーマは、フロントページをコンテンツの目立つショーケースへと変身させるショーケース固定ページテンプレートを備えています。多数のエリア (サイドバー、3つのフッターエリア、ショーケース固定ページウィジェットエリア) がウィジェットに対応しており、また、アサイド・リンク・引用・ステータスを表示する「短冊」ウィジェットも含んでいます。印刷用と管理者のエディタ用のスタイル、アイキャッチ画像 (投稿、固定ページ上のヘッダー画像と注目の「固定」記事の大きな画像として) のサポート、6つの異なる投稿フォーマットの特別なスタイルが含まれています。"
+
+#. Theme Name of the theme
+msgid "Twenty Eleven"
+msgstr "Twenty Eleven"
+
+#: functions.php:125
+msgid "White"
+msgstr "白"
+
+#: functions.php:120
+msgid "Light Gray"
+msgstr "ライトグレー"
+
+#: functions.php:115
+msgid "Medium Gray"
+msgstr "グレー"
+
+#: functions.php:110
+msgid "Dark Gray"
+msgstr "ダークグレー"
+
+#: functions.php:105
+msgid "Black"
+msgstr "黒"
+
+#: functions.php:100
+msgid "Blue"
+msgstr "ブルー"
+
+#. Template Name of the theme
+msgid "Sidebar Template"
+msgstr "サイドバーテンプレート"
+
+#. Template Name of the theme
+msgid "Showcase Template"
+msgstr "ショーケーステンプレート"
+
+#: tag.php:20
+msgid "Tag Archives: %s"
+msgstr "「%s」タグアーカイブ"
+
+#: single.php:23
+msgid "Next <span class=\"meta-nav\">&rarr;</span>"
+msgstr "次へ <span class=\"meta-nav\">&rarr;</span>"
+
+#: single.php:22
+msgid "<span class=\"meta-nav\">&larr;</span> Previous"
+msgstr "<span class=\"meta-nav\">&larr;</span> 前へ"
+
+#: sidebar.php:26
+msgid "Meta"
+msgstr "メタ情報"
+
+#: sidebar.php:19
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: showcase.php:170
+msgid "Recent Posts"
+msgstr "最近の投稿"
+
+#: showcase.php:160
+msgid "Featuring: %s"
+msgstr "注目: %s"
+
+#: showcase.php:83
+msgid "Featured Post"
+msgstr "おすすめ投稿"
+
+#: searchform.php:11 searchform.php:12 searchform.php:13
+msgid "Search"
+msgstr "検索"
+
+#: search.php:51
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "ご指定の検索条件に合う投稿がありませんでした。他のキーワードでもう一度検索してみてください。"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "検索結果: %s"
+
+#: inc/widgets.php:197
+msgid "Number of posts to show:"
+msgstr "表示する投稿数:"
+
+#: inc/widgets.php:194
+msgid "Title:"
+msgstr "タイトル:"
+
+#: inc/widgets.php:118 inc/widgets.php:127
+msgid "% <span class=\"reply\">comments &rarr;</span>"
+msgstr "%<span class=\"reply\">件のコメント &rarr;</span>"
+
+#: inc/widgets.php:118 inc/widgets.php:127
+msgid "1 <span class=\"reply\">comment &rarr;</span>"
+msgstr "1<span class=\"reply\">件のコメント &rarr;</span>"
+
+#: inc/widgets.php:118 inc/widgets.php:127
+msgid "0 <span class=\"reply\">comments &rarr;</span>"
+msgstr "0<span class=\"reply\">件のコメント &rarr;</span>"
+
+#: inc/widgets.php:74
+msgid "Ephemera"
+msgstr "短冊"
+
+#: inc/widgets.php:23
+msgid "Twenty Eleven Ephemera"
+msgstr "Twenty Eleven 短冊"
+
+#: inc/widgets.php:26
+msgid "Use this widget to list your recent Aside, Status, Quote, and Link posts"
+msgstr "このウィジェットで最近のアサイド、ステータス、引用、リンクを並べることができます。"
+
+#: inc/theme-options.php:600
+msgid "Layout"
+msgstr "レイアウト"
+
+#: inc/theme-options.php:341
+msgid "%s Theme Options"
+msgstr "%s テーマ設定"
+
+#: inc/theme-options.php:305
+msgid "Default color: %s"
+msgstr "初期設定の色: %s"
+
+#: inc/theme-options.php:302
+msgid "Select a Color"
+msgstr "色を選択"
+
+#: inc/theme-options.php:193
+msgid "One-column, no sidebar"
+msgstr "一列・サイドバーなし"
+
+#: inc/theme-options.php:188
+msgid "Content on right"
+msgstr "右コンテンツ"
+
+#: inc/theme-options.php:183
+msgid "Content on left"
+msgstr "左コンテンツ"
+
+#: inc/theme-options.php:158
+msgid "Dark"
+msgstr "ダークカラー"
+
+#: inc/theme-options.php:152
+msgid "Light"
+msgstr "明るい"
+
+#: inc/theme-options.php:130
+msgid "Overview"
+msgstr "概要"
+
+#: inc/theme-options.php:122
+msgid "<a href=\"https://wordpress.org/support/\" target=\"_blank\">Support Forums</a>"
+msgstr "<a href=\"http://ja.forums.wordpress.org/\" target=\"_blank\">サポートフォーラム</a>"
+
+#: inc/theme-options.php:121
+msgid "<a href=\"https://codex.wordpress.org/Appearance_Theme_Options_Screen\" target=\"_blank\">Documentation on Theme Options</a>"
+msgstr "<a href=\"http://wpdocs.sourceforge.jp/Appearance_Theme_Options_Screen\" target=\"_blank\">テーマ設定の解説</a>"
+
+#: inc/theme-options.php:120
+msgid "For more information:"
+msgstr "詳細情報:"
+
+#: inc/theme-options.php:118
+msgid "Remember to click \"Save Changes\" to save any changes you have made to the theme options."
+msgstr "テーマ設定を変更したら、忘れずに「変更を保存」ボタンをクリックしてください。"
+
+#: inc/theme-options.php:116
+msgid "<strong>Default Layout</strong>: You can choose if you want your site&#8217;s default layout to have a sidebar on the left, the right, or not at all."
+msgstr "<strong>デフォルトのレイアウト</strong>: デフォルトのレイアウトを左にサイドバーを置くのか、右に置くのか、あるいはなしにしたいのか選ぶことができます。"
+
+#: inc/theme-options.php:115
+msgid "<strong>Link Color</strong>: You can choose the color used for text links on your site. You can enter the HTML color or hex code, or you can choose visually by clicking the \"Select a Color\" button to pick from a color wheel."
+msgstr "<strong>リンクカラー</strong>: サイトのテキストリンクに使われる色を選ぶことができます。HTML カラーか16進数カラーコードを入力するか、\"色を選ぶ\"ボタンを押してカラーホイールから色を選び取ることで視覚的に選ぶことができます。"
+
+#: inc/theme-options.php:114
+msgid "<strong>Color Scheme</strong>: You can choose a color palette of \"Light\" (light background with dark text) or \"Dark\" (dark background with light text) for your site."
+msgstr "<strong>カラースキーム</strong>: \"明\" (明るい背景に暗いテキスト) か\"暗\" (暗い背景に明るいテキスト)のカラーパレットを選ぶことができます。"
+
+#: inc/theme-options.php:112
+msgid "Some themes provide customization options that are grouped together on a Theme Options screen. If you change themes, options may change or disappear, as they are theme-specific. Your current theme, Twenty Eleven, provides the following Theme Options:"
+msgstr "テーマ設定画面にまとめられたカスタマイズ設定を利用できるテーマもあります。テーマを変えると、設定が変わったり、消えるかもしれません。それはテーマ次第だからです。現在のテーマ、Twenty Eleven は以下のテーマ設定が利用できます:"
+
+#: inc/theme-options.php:95 inc/theme-options.php:96
+msgid "Theme Options"
+msgstr "テーマオプション"
+
+#: inc/theme-options.php:63
+msgid "Default Layout"
+msgstr "デフォルトのレイアウト"
+
+#: inc/theme-options.php:62 inc/theme-options.php:589
+msgid "Link Color"
+msgstr "リンク色"
+
+#: inc/theme-options.php:56 inc/theme-options.php:564
+msgid "Color Scheme"
+msgstr "色の設定"
+
+#: image.php:34
+msgid "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class=\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>"
+msgstr "<span class=\"meta-prep meta-prep-entry-date\">公開日時:</span> <span class=\"entry-date\"><abbr class=\"published\" title=\"%1$s\">%2$s</abbr></span> @ <a href=\"%3$s\" title=\"フルサイズ画像へのリンク\">%4$s &times; %5$s</a> カテゴリー: <a href=\"%6$s\" title=\"%7$s へ戻る\" rel=\"gallery\">%8$s</a>"
+
+#: image.php:23
+msgid "Next &rarr;"
+msgstr "次へ &rarr;"
+
+#: image.php:22
+msgid "&larr; Previous"
+msgstr "&larr; 前へ"
+
+#: image.php:21
+msgid "Image navigation"
+msgstr "画像ナビゲーション"
+
+#: header.php:146
+msgid "Skip to secondary content"
+msgstr "サブコンテンツへ移動"
+
+#: header.php:144
+msgid "Skip to primary content"
+msgstr "メインコンテンツへ移動"
+
+#: header.php:142
+msgid "Main menu"
+msgstr "メインメニュー"
+
+#: header.php:45
+msgid "Page %s"
+msgstr "ページ %s"
+
+#: functions.php:785
+msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+msgstr "<span class=\"sep\">投稿日時: </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> 投稿者: </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
+
+#: functions.php:759
+msgid "Reply <span>&darr;</span>"
+msgstr "返信 <span>&darr;</span>"
+
+#: functions.php:745
+msgid "Your comment is awaiting moderation."
+msgstr "あなたのコメントは承認待ちです。"
+
+#. translators: 1: date, 2: time
+#: functions.php:736
+msgid "%1$s at %2$s"
+msgstr "%1$s %2$s"
+
+#: functions.php:729
+msgid "%1$s on %2$s <span class=\"says\">said:</span>"
+msgstr "%1$s %2$s <span class=\"says\">より:</span> "
+
+#: functions.php:710
+msgid "Pingback:"
+msgstr "ピンバック:"
+
+#: functions.php:605
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "新しい投稿 <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:604
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 過去の投稿"
+
+#: single.php:21 functions.php:603
+msgid "Post navigation"
+msgstr "投稿ナビゲーション"
+
+#: functions.php:577
+msgid "Footer Area Three"
+msgstr "フッターエリア3"
+
+#: functions.php:565
+msgid "Footer Area Two"
+msgstr "フッターエリア2"
+
+#: functions.php:555 functions.php:567 functions.php:579
+msgid "An optional widget area for your site footer"
+msgstr "フッター用のウィジェットエリア"
+
+#: functions.php:553
+msgid "Footer Area One"
+msgstr "フッターエリア1"
+
+#: functions.php:543
+msgid "The sidebar for the optional Showcase Template"
+msgstr "ショーケーステンプレート用のサイドバー"
+
+#: functions.php:541
+msgid "Showcase Sidebar"
+msgstr "ショーケースサイドバー"
+
+#: functions.php:530
+msgid "Main Sidebar"
+msgstr "メインサイドバー"
+
+#. translators: header image description
+#: functions.php:278
+msgid "Hanoi Plant"
+msgstr "ハノイ・プラント"
+
+#. translators: header image description
+#: functions.php:272
+msgid "Willow"
+msgstr "柳"
+
+#. translators: header image description
+#: functions.php:266
+msgid "Lanterns"
+msgstr "ランタン"
+
+#. translators: header image description
+#: functions.php:260
+msgid "Chessboard"
+msgstr "チェス盤"
+
+#. translators: header image description
+#: functions.php:254
+msgid "Pine Cone"
+msgstr "松ぼっくり"
+
+#. translators: header image description
+#: functions.php:248
+msgid "Trolley"
+msgstr "路面電車"
+
+#. translators: header image description
+#: functions.php:242
+msgid "Shore"
+msgstr "海岸"
+
+#. translators: header image description
+#: functions.php:236
+msgid "Wheel"
+msgstr "ホイール"
+
+#: functions.php:142
+msgid "Primary Menu"
+msgstr "メインメニュー"
+
+#: footer.php:35
+msgid "Proudly powered by %s"
+msgstr "Proudly powered by %s"
+
+#: footer.php:34
+msgid "Semantic Personal Publishing Platform"
+msgstr "セマンティックなパブリッシングツール"
+
+#: content.php:16
+msgid "Featured"
+msgstr "注目"
+
+#: content-status.php:19
+msgid "Status"
+msgstr "ステータス"
+
+#: content-single.php:74
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s の投稿をすべて表示 <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-single.php:46
+msgid "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "作成者: <a href=\"%6$s\">%5$s</a> <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">パーマリンク</a>"
+
+#: content-single.php:44
+msgid "This entry was posted in %1$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "カテゴリー: %1$s &nbsp; 作成者: <a href=\"%6$s\">%5$s</a> <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">パーマリンク</a>"
+
+#: content-single.php:42
+msgid "This entry was posted in %1$s and tagged %2$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "カテゴリー: %1$s &nbsp; タグ: %2$s  &nbsp; 作成者: <a href=\"%6$s\">%5$s</a> &nbsp; <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">この投稿のパーマリンク</a>"
+
+#: content-quote.php:15
+msgid "Quote"
+msgstr "引用"
+
+#: content-link.php:19
+msgid "Link"
+msgstr "リンク"
+
+#: content-image.php:49 functions.php:791
+msgid "View all posts by %s"
+msgstr "%s の投稿をすべて表示"
+
+#: content-image.php:44
+msgid "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+msgstr "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a> <span class=\"by-author\"> <span class=\"sep\">投稿者:</span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
+
+#: content-image.php:18
+msgid "Image"
+msgstr "画像"
+
+#: content-gallery.php:93 content-image.php:70 content-quote.php:71
+#: content.php:80
+msgid "<span class=\"%1$s\">Tagged</span> %2$s"
+msgstr "<span class=\"%1$s\">タグ:</span> %2$s"
+
+#: content-gallery.php:78 content-image.php:61 content-quote.php:56
+#: content.php:63
+msgid "<span class=\"%1$s\">Posted in</span> %2$s"
+msgstr "<span class=\"%1$s\">カテゴリー:</span> %2$s"
+
+#: content-gallery.php:50 showcase.php:128
+msgid "Permalink to %s"
+msgstr "%s へのパーマリンク"
+
+#: content-gallery.php:49
+msgid "This gallery contains <a %1$s>%2$s photo</a>."
+msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
+msgstr[0] "このギャラリーには<a %1$s>%2$s枚の写真</a>が含まれています。"
+
+#: content-gallery.php:19
+msgid "Gallery"
+msgstr "ギャラリー"
+
+#: content-featured.php:40
+msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "カテゴリー: %1$s <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">パーマリンク</a>"
+
+#: content-featured.php:38
+msgid "This entry was posted in %1$s and tagged %2$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
+msgstr "カテゴリー: %1$s タグ: %2$s <a href=\"%3$s\" title=\"%4$s へのパーマリンク\" rel=\"bookmark\">パーマリンク</a>"
+
+#. translators: used between list items, there is a space after the comma
+#: content-gallery.php:73 content-gallery.php:85 content-image.php:57
+#: content-image.php:66 content-single.php:37 content-single.php:40
+#: content-quote.php:51 content-quote.php:63 content-featured.php:36
+#: content-featured.php:45 content.php:58 content.php:72
+msgid ", "
+msgstr ", "
+
+#: content-gallery.php:106 content-aside.php:53 content-status.php:66
+#: content-image.php:79 content-single.php:59 content-link.php:53
+#: content-intro.php:26 content-page.php:28 content-quote.php:84 image.php:45
+#: functions.php:710 functions.php:741 content-featured.php:52 content.php:94
+msgid "Edit"
+msgstr "編集"
+
+#: content-gallery.php:103 content-aside.php:51 content-status.php:64
+#: content-image.php:75 content-link.php:51 content-quote.php:81
+#: showcase.php:214 content.php:91
+msgid "<b>%</b> Replies"
+msgstr "<b>%</b>件のフィードバック"
+
+#: content-gallery.php:103 content-aside.php:51 content-status.php:64
+#: content-image.php:75 content-link.php:51 content-quote.php:81
+#: showcase.php:214 content.php:91
+msgid "<b>1</b> Reply"
+msgstr "<b>1</b>件のフィードバック"
+
+#: content-gallery.php:103 content-aside.php:51 content-status.php:64
+#: content-image.php:75 content-link.php:51 content-quote.php:81
+#: showcase.php:214 content.php:91
+msgid "Leave a reply"
+msgstr "コメントを残す"
+
+#: content-gallery.php:61 content-aside.php:39 content-status.php:52
+#: content-image.php:33 content-single.php:27 content-link.php:39
+#: content-intro.php:21 content-page.php:21 content-quote.php:39 image.php:119
+#: content-featured.php:26 content.php:45
+msgid "Pages:"
+msgstr "ページ:"
+
+#: content-gallery.php:34 content-aside.php:35 content-status.php:48
+#: content-image.php:29 content-link.php:35 content-quote.php:35
+#: functions.php:457 content.php:41
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "続きを読む <span class=\"meta-nav\">&rarr;</span>"
+
+#: content-aside.php:24 content-status.php:24 content-image.php:23
+#: content-link.php:24 content-quote.php:24 content.php:30
+msgctxt "comments number"
+msgid "%"
+msgstr "%"
+
+#: content-aside.php:24 content-status.php:24 content-image.php:23
+#: content-link.php:24 content-quote.php:24 content.php:30
+msgctxt "comments number"
+msgid "1"
+msgstr "1"
+
+#: content-aside.php:24 content-status.php:24 content-image.php:23
+#: content-link.php:24 content-quote.php:24 content.php:30
+msgid "Reply"
+msgstr "返信"
+
+#: content-aside.php:19
+msgid "Aside"
+msgstr "アサイド"
+
+#: comments.php:78
+msgid "Comments are closed."
+msgstr "コメントは停止中です。"
+
+#: comments.php:46 comments.php:67
+msgid "Newer Comments &rarr;"
+msgstr "新しいコメント &rarr;"
+
+#: comments.php:45 comments.php:66
+msgid "&larr; Older Comments"
+msgstr "&larr; 過去のコメント"
+
+#: comments.php:44 comments.php:65
+msgid "Comment navigation"
+msgstr "コメントナビゲーション"
+
+#: comments.php:35
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "「%2$s」への%1$s件のフィードバック"
+
+#: comments.php:17
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr "この投稿はパスワードで保護されています。コメントを表示するにはパスワードを入力してください。"
+
+#: category.php:20
+msgid "Category Archives: %s"
+msgstr "「%s」カテゴリーアーカイブ"
+
+#: content-single.php:70 author.php:61
+msgid "About %s"
+msgstr "%s について"
+
+#: author.php:29
+msgid "Author Archives: %s"
+msgstr "投稿者「%s」のアーカイブ"
+
+#: archive.php:64 index.php:44 tag.php:69 category.php:68 author.php:94
+msgid "Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post."
+msgstr "リクエストされたアーカイブには何も見つかりませんでした。検索すれば関連投稿が見つかるかもしれません。"
+
+#: archive.php:60 index.php:40 tag.php:65 search.php:47 category.php:64
+#: author.php:90
+msgid "Nothing Found"
+msgstr "見つかりません"
+
+#: archive.php:31
+msgid "Blog Archives"
+msgstr "ブログアーカイブ"
+
+#: archive.php:29
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y年"
+
+#: archive.php:29
+msgid "Yearly Archives: %s"
+msgstr "年別アーカイブ: %s"
+
+#: archive.php:27
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "Y年n月"
+
+#: archive.php:27
+msgid "Monthly Archives: %s"
+msgstr "月別アーカイブ: %s"
+
+#: archive.php:25
+msgid "Daily Archives: %s"
+msgstr "日別アーカイブ: %s"
+
+#. translators: %1$s: smilie
+#: 404.php:46
+msgid "Try looking in the monthly archives. %1$s"
+msgstr "月別アーカイブを探してみてください %1$s"
+
+#: 404.php:28
+msgid "Most Used Categories"
+msgstr "よく使われているカテゴリー"
+
+#: 404.php:21
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help."
+msgstr "ご指定のコンテンツを見つけられませんでした。検索するか、下記のリンクが役に立つかもしれません。"
+
+#: 404.php:17
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr "おっと、失礼しました。"
+
+#. Author URI of the theme
+#: footer.php:34
+msgid "https://wordpress.org/"
+msgstr "https://ja.wordpress.org/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress チーム"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentyeleven/"
+msgstr "https://wordpress.org/themes/twentyeleven/"

@@ -1,0 +1,157 @@
+/*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Toggle Styles */
+#sidebar-wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+
+#sidebar-wrapper .navbar-toggle {
+    float: left;
+    margin-left: 5px;
+    border: 0 none;
+}
+
+.navbar-toggle {
+    float: right;
+    z-index: 200;
+    margin-right: 0;
+    padding: 9px 0 9px 10px;
+}
+
+.icon-bar {
+    background-color: #ccc;
+    box-shadow: 1px 1px 5px #ccc;
+    -moz-box-shadow: 1px 1px 5px #ccc;
+    -webkit-box-shadow: 1px 1px 5px #ccc;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #fff;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#sidebar-wrapper.on {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#sidebar-wrapper.on #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Hamburger Toggle */
+.mobile-banner {
+    position:absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.navbar-toggle {
+
+    .icon-bar {
+        @include transition(all 500ms ease);
+    }
+
+    .icon-bar:nth-of-type(2),
+    .icon-bar:nth-of-type(4) {
+          transform: rotate(0);
+    }
+
+}
+
+.navbar-toggle.active {
+
+    .icon-bar {
+        position: relative;
+        @include transition(all 500ms ease);
+        @include shadow(0 0 0 transparent);
+    }
+
+    .icon-bar:nth-of-type(2) {
+          top: 6px;
+          transform: rotate(45deg);
+    }
+
+    .icon-bar:nth-of-type(3) {
+          background-color: transparent !important;
+    }
+
+    .icon-bar:nth-of-type(4) {
+          top: -6px;
+          transform: rotate(-45deg);
+    }
+
+}
+
+#sidebar-wrapper {
+    margin: 10px;
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        border-bottom: 1px solid #dbdbdb;
+    }
+    
+    #menu-primary-navigation .fa {
+        display: block;
+        position: absolute;
+        top: -6px;
+        right: 0;
+        font-size: 23px;
+        text-align: center;
+        width: 50px;
+        height: 53px;
+        padding: 6px 0 0;
+        color: #6a8d9c;
+        
+        &:hover {
+                cursor: pointer;
+            }
+
+        &.is-open {
+            transform: rotate(180deg);
+            padding-top: 22px;
+        }
+
+    }
+
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: #333;
+}
+.navbar-default .navbar-toggle {
+  border-color: #333;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+.current-menu-ancestor .submenuGroup {
+  display: block !important;
+}

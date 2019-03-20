@@ -1,0 +1,59 @@
+#sidebar-left ul.links li a.active
+{
+	background-color: #e80480; /* e9459e changed to e80480 */
+}
+
+#content-area h1, #content-area a
+{
+	color: #e80480;
+}
+#content-area .item-list h1
+{
+	color: #e80480;
+	font-size: 1.167em;
+	line-height: 1.6em;
+	font-weight: bold;
+}
+
+#content-area .item-list h2
+{
+	font-size: 1.0em;
+	font-weight: bold;
+	color: #2c2c2c;
+	margin: 0;
+	line-height: 1.33em;
+}
+
+#content-area .item-list h3
+{
+	text-transform: uppercase;
+	font-size: 1.0em;
+	margin:0;
+	font-weight: normal;
+	color: #2c2c2c;
+}
+
+#content-area .item-list p
+{
+	margin: 0 0 0 0;
+	padding: 0;
+	line-height: 1.5em;
+}
+
+#content-area .view-item
+{
+	clear: left;
+	padding-bottom: 19px;
+}
+
+#content-area .view-item p.link
+{
+	text-transform: uppercase;
+}
+
+#content-area .view-item p.link a
+{
+	color: #2c2c2c;
+	text-decoration: underline;
+	font-size: 0.833em;
+}

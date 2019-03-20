@@ -1,0 +1,3 @@
+name = 'Brower Center Calendar Custom Functions'
+description = 'Some custom functions for the Brower Center Calendar. Requires content type "Reservation."'
+core = 7.x

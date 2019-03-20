@@ -1,0 +1,345 @@
+# Translation of Themes - Twenty Twelve in Japanese
+# This file is distributed under the same license as the Themes - Twenty Twelve package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-02-15 14:32:26+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Themes - Twenty Twelve\n"
+
+#. Description of the theme
+msgid "The 2012 theme for WordPress is a fully responsive theme that looks great on any device. Features include a front page template with its own widgets, an optional display font, styling for post formats on both index and single views, and an optional no-sidebar page template. Make it yours with a custom menu, header image, and background."
+msgstr "2012年の WordPress デフォルトテーマはレスポンシブデザインに対応しており、さまざまなデバイス上で美しく表示できます。独自ウィジェットを持つフロントページテンプレート、オプションの表示フォント、インデックス・シングルページ両方での投稿フォーマット、サイドバーなしテンプレートオプションなどの機能を含んでいます。カスタムメニュー、ヘッダー画像、背景を使ってカスタマイズしてください。"
+
+#. Theme Name of the theme
+msgid "Twenty Twelve"
+msgstr "Twenty Twelve"
+
+#: functions.php:92
+msgid "White"
+msgstr "白"
+
+#: functions.php:87
+msgid "Light Gray"
+msgstr "ライトグレー"
+
+#: functions.php:82
+msgid "Medium Gray"
+msgstr "グレー"
+
+#: functions.php:77
+msgid "Dark Gray"
+msgstr "ダークグレー"
+
+#: functions.php:72
+msgid "Blue"
+msgstr "ブルー"
+
+#. Template Name of the theme
+msgid "Full-width Page Template, No Sidebar"
+msgstr "全幅ページテンプレート、サイドバーなし"
+
+#. Template Name of the theme
+msgid "Front Page Template"
+msgstr "フロントページテンプレート"
+
+#: tag.php:21
+msgid "Tag Archives: %s"
+msgstr "「%s」タグアーカイブ"
+
+#: single.php:25
+msgctxt "Next post link"
+msgid "&rarr;"
+msgstr "&rarr;"
+
+#: single.php:24
+msgctxt "Previous post link"
+msgid "&larr;"
+msgstr "&larr;"
+
+#: search.php:41
+msgid "Sorry, but nothing matched your search criteria. Please try again with some different keywords."
+msgstr "ご指定の検索条件に合う投稿がありませんでした。他のキーワードでもう一度検索してみてください。"
+
+#: search.php:18
+msgid "Search Results for: %s"
+msgstr "検索結果: %s"
+
+#: index.php:46
+msgid "Ready to publish your first post? <a href=\"%s\">Get started here</a>."
+msgstr "最初の投稿をする準備ができましたか ? <a href=\"%s\">ここからスタート</a>してください。"
+
+#: index.php:42
+msgid "No posts to display"
+msgstr "表示する投稿がありません"
+
+#: image.php:46
+msgid "Next &rarr;"
+msgstr "次へ &rarr;"
+
+#: image.php:45
+msgid "&larr; Previous"
+msgstr "&larr; 前へ"
+
+#: image.php:30
+msgid "<span class=\"meta-prep meta-prep-entry-date\">Published </span> <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span> at <a href=\"%3$s\" title=\"Link to full-size image\">%4$s &times; %5$s</a> in <a href=\"%6$s\" title=\"Return to %7$s\" rel=\"gallery\">%8$s</a>."
+msgstr "<span class=\"meta-prep meta-prep-entry-date\">公開日時:</span> <span class=\"entry-date\"><time class=\"entry-date\" datetime=\"%1$s\">%2$s</time></span><a href=\"%3$s\" title=\"フルサイズ画像へのリンク\">%4$s &times; %5$s</a> (<a href=\"%6$s\" title=\"%7$s へ戻る\" rel=\"gallery\">%8$s</a>)"
+
+#: header.php:44
+msgid "Skip to content"
+msgstr "コンテンツへスキップ"
+
+#: header.php:43
+msgid "Menu"
+msgstr "メニュー"
+
+#: functions.php:512
+msgid "This entry was posted on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "この投稿は%3$s<span class=\"by-author\">に%4$sが公開しました</span>。"
+
+#: functions.php:510
+msgid "This entry was posted in %1$s on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "カテゴリー: %1$s | 投稿日: %3$s | <span class=\"by-author\">投稿者: %4$s</span>"
+
+#. Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's
+#. name.
+#: functions.php:508
+msgid "This entry was posted in %1$s and tagged %2$s on %3$s<span class=\"by-author\"> by %4$s</span>."
+msgstr "カテゴリー: %1$s | タグ: %2$s | 投稿日: %3$s | <span class=\"by-author\">投稿者: %4$s</span>"
+
+#: functions.php:502
+msgid "View all posts by %s"
+msgstr "%s の投稿をすべて表示"
+
+#. Translators: used between list items, there is a space after the comma.
+#: functions.php:486 functions.php:489
+msgid ", "
+msgstr ", "
+
+#: functions.php:458
+msgid "Reply"
+msgstr "返信"
+
+#: functions.php:444
+msgid "Your comment is awaiting moderation."
+msgstr "あなたのコメントは承認待ちです。"
+
+#. translators: 1: date, 2: time
+#: functions.php:438
+msgid "%1$s at %2$s"
+msgstr "%1$s %2$s"
+
+#: functions.php:431
+msgid "Post author"
+msgstr "投稿作成者"
+
+#: functions.php:415
+msgid "(Edit)"
+msgstr "(編集)"
+
+#: functions.php:415
+msgid "Pingback:"
+msgstr "ピンバック:"
+
+#: functions.php:389
+msgid "Newer posts <span class=\"meta-nav\">&rarr;</span>"
+msgstr "新しい投稿 <span class=\"meta-nav\">&rarr;</span>"
+
+#: functions.php:388
+msgid "<span class=\"meta-nav\">&larr;</span> Older posts"
+msgstr "<span class=\"meta-nav\">&larr;</span> 過去の投稿"
+
+#: single.php:23 functions.php:387
+msgid "Post navigation"
+msgstr "投稿ナビゲーション"
+
+#: functions.php:364
+msgid "Second Front Page Widget Area"
+msgstr "フロントページウィジェットエリア 2"
+
+#: functions.php:354 functions.php:366
+msgid "Appears when using the optional Front Page template with a page set as Static Front Page"
+msgstr "オプションフロントページテンプレートを固定フロントとして使う際に表示されます。"
+
+#: functions.php:352
+msgid "First Front Page Widget Area"
+msgstr "フロントページウィジェットエリア 1"
+
+#: functions.php:342
+msgid "Appears on posts and pages except the optional Front Page template, which has its own widgets"
+msgstr "独自ウィジェットを持つオプションフロントページテンプレートの投稿と固定ページに表示されます。"
+
+#: functions.php:340
+msgid "Main Sidebar"
+msgstr "メインサイドバー"
+
+#: functions.php:308
+msgid "Page %s"
+msgstr "ページ %s"
+
+#. translators: To add an additional Open Sans character subset specific to
+#. your language, * translate this to 'greek', 'cyrillic' or 'vietnamese'. Do
+#. not translate into your own language.
+#: functions.php:155
+msgctxt "Open Sans font: add new subset (greek, cyrillic, vietnamese)"
+msgid "no-subset"
+msgstr "no-subset"
+
+#. translators: If there are characters in your language that are not supported
+#. * by Open Sans, translate this to 'off'. Do not translate into your own
+#. language.
+#: functions.php:149
+msgctxt "Open Sans font: on or off"
+msgid "on"
+msgstr "on"
+
+#: functions.php:106
+msgid "Primary Menu"
+msgstr "メインメニュー"
+
+#: footer.php:22
+msgid "Proudly powered by %s"
+msgstr "Proudly powered by %s"
+
+#: footer.php:21
+msgid "Semantic Personal Publishing Platform"
+msgstr "セマンティックなパブリッシングツール"
+
+#: content.php:75
+msgid "View all posts by %s <span class=\"meta-nav\">&rarr;</span>"
+msgstr "%s の投稿をすべて表示 <span class=\"meta-nav\">&rarr;</span>"
+
+#: content.php:16
+msgid "Featured post"
+msgstr "おすすめ投稿"
+
+#: content-page.php:24 image.php:123 content.php:50
+msgid "Pages:"
+msgstr "ページ:"
+
+#: index.php:58 content-none.php:17
+msgid "Apologies, but no results were found. Perhaps searching will help find a related post."
+msgstr "一致する結果がありませんでした。検索してみると、関連投稿が見つかるかもしれません。"
+
+#: index.php:54 search.php:37 content-none.php:13
+msgid "Nothing Found"
+msgstr "見つかりません"
+
+#: content-link.php:12
+msgid "Link"
+msgstr "リンク"
+
+#: content-aside.php:26 content-status.php:40 content-image.php:26
+#: content-link.php:24 content-page.php:31 content-quote.php:23 image.php:41
+#: functions.php:449 content.php:60
+msgid "Edit"
+msgstr "編集"
+
+#: content-aside.php:23 content-status.php:37 content-image.php:23
+#: content-link.php:21 content-quote.php:20 content.php:35
+msgid "% Replies"
+msgstr "%件の返信"
+
+#: content-aside.php:23 content-status.php:37 content-image.php:23
+#: content-link.php:21 content-quote.php:20 content.php:35
+msgid "1 Reply"
+msgstr "1件のフィードバック "
+
+#: content-aside.php:23 content-status.php:37 content-image.php:23
+#: content-link.php:21 content-quote.php:20 content.php:35
+msgid "Leave a reply"
+msgstr "コメントを残す"
+
+#: content-aside.php:20 content-status.php:15 content-link.php:18
+#: content-quote.php:17
+msgid "Permalink to %s"
+msgstr "%s へのパーマリンク"
+
+#: content-aside.php:15 content-status.php:31 content-image.php:13
+#: content-link.php:14 content-quote.php:13 content.php:46
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr "続きを読む <span class=\"meta-nav\">&rarr;</span>"
+
+#: comments.php:65
+msgid "Comments are closed."
+msgstr "コメントは停止中です。"
+
+#: comments.php:55
+msgid "Newer Comments &rarr;"
+msgstr "新しいコメント &rarr;"
+
+#: comments.php:54
+msgid "&larr; Older Comments"
+msgstr "&larr; 過去のコメント"
+
+#: comments.php:53
+msgid "Comment navigation"
+msgstr "コメントナビゲーション"
+
+#: comments.php:33
+msgid "One thought on &ldquo;%2$s&rdquo;"
+msgid_plural "%1$s thoughts on &ldquo;%2$s&rdquo;"
+msgstr[0] "「%2$s」への%1$s件のフィードバック"
+
+#: category.php:21
+msgid "Category Archives: %s"
+msgstr "「%s」カテゴリーアーカイブ"
+
+#: content.php:71 author.php:64
+msgid "About %s"
+msgstr "%s について"
+
+#: author.php:32
+msgid "Author Archives: %s"
+msgstr "投稿者「%s」のアーカイブ"
+
+#: archive.php:36
+msgid "Archives"
+msgstr "アーカイブ"
+
+#: archive.php:34
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y年"
+
+#: archive.php:34
+msgid "Yearly Archives: %s"
+msgstr "年別アーカイブ: %s"
+
+#: archive.php:32
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "Y年n月"
+
+#: archive.php:32
+msgid "Monthly Archives: %s"
+msgstr "月別アーカイブ: %s"
+
+#: archive.php:30
+msgid "Daily Archives: %s"
+msgstr "日別アーカイブ: %s"
+
+#: 404.php:21
+msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
+msgstr "お探しのコンテンツを見つけられませんでした。検索をお試しください。"
+
+#: 404.php:17
+msgid "This is somewhat embarrassing, isn&rsquo;t it?"
+msgstr "おっと、失礼しました。"
+
+#. Author URI of the theme
+#: footer.php:21
+msgid "https://wordpress.org/"
+msgstr "https://ja.wordpress.org/"
+
+#. Author of the theme
+msgid "the WordPress team"
+msgstr "WordPress チーム"
+
+#. Theme URI of the theme
+msgid "https://wordpress.org/themes/twentytwelve/"
+msgstr "https://ja.wordpress.org/themes/twentytwelve/"

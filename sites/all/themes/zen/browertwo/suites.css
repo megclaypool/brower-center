@@ -1,0 +1,9 @@
+#sidebar-left ul.links li a.active
+{
+	background-color: #f29c2b; /* f84747 changed to f29c2b */
+}
+#content-area h1, #content-area a
+{
+	color: #f29c2b;
+}
+

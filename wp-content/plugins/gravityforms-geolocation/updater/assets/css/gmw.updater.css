@@ -1,0 +1,48 @@
+/**
+ * License box styling
+ */
+.gmw-license-key-addon-wrapper td,
+.gmw-license-key-addon-wrapper th {
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+
+tr.gmw-license-key-row td {
+	border-left: 4px solid #2ea2cc !important;
+	padding-top: 0px !important
+}
+
+.gmw-license-key-row.update td {
+	border-left:4px solid #d54e21 !important;
+}
+
+.gmw-license-key-wrapper {
+	padding: 8px;
+}
+.gmw-license-key-wrapper.active {
+	border: 1px solid rgba(55, 196, 42, 0.24);
+	background: #E9F5E8;
+}
+
+.gmw-license-key-wrapper.inactive {
+	background: #f1f1f1;
+	border: 1px solid #e9e9e9;
+}
+
+.gmw-license-key-wrapper.inactive.gmw-license-error {
+	background:rgb(255, 237, 237);	
+	border:1px solid rgb(249, 214, 214);
+}
+
+.gmw-license-key-wrapper .gmw-license-key-input-field {
+	width: 270px;
+	margin-bottom: 0px
+}
+
+.gmw-license-key-wrapper p.description {
+	padding: 5px 0px;
+}
+
+.row-actions.visible .deactivate {
+	color:rgb(204, 85, 85) !important;
+}

@@ -1,0 +1,55 @@
+td#home-tiles div
+{
+	float: left;
+	width: 181px;
+	height: 181px;
+	margin-left: 17px;
+	color: white;
+	font-size: 11px;
+	font-family: Helvetica, sans-serif;
+}
+
+td#home-tiles div div
+{
+	float: none;
+	padding: 5px 0 0 0;
+	width: auto;
+	height: auto;
+	margin: 0;
+}
+
+td#home-tiles div a
+{
+	color: white;
+	font-weight: normal;
+	text-decoration: underline;
+	text-transform: uppercase;
+	
+}
+
+td#home-tiles div img
+{
+	float: none;
+	display: block;
+}
+
+td#home-tiles div#tile1
+{
+	background-color: #ff9c02;
+	margin-left: 0;
+}
+
+td#home-tiles div#tile1 div
+{
+	padding-left: 6px;
+}
+
+td#home-tiles div#tile2
+{
+	background-color: #64d1e8;
+}
+
+td#home-tiles div#tile2 div
+{
+	padding-left: 12px;
+}

@@ -1,0 +1,3 @@
+name = Form changes
+description = A quick custom module by Dean to alter form button text in the Tenant info form.
+core = 7.x

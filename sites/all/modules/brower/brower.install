@@ -1,0 +1,46 @@
+<?php
+
+/**
+  * Implements hook_schema().
+  */
+
+function brower_schema() {
+	$schema['brower_cal_notify'] = array(
+		'description' => 'Records of whether the user has been notified or not',
+		'fields' => array(
+			'brid' => array(
+				'description' => 'The unique ID of this reservation confirmation',
+				'type' => 'serial',
+			),
+			'nid' => array(
+				'description' => 'The nid of the reservation node',
+				'type' => 'int',
+				'unsigned' => TRUE,
+				'not null' => TRUE,
+				'default' => 0,
+			),
+			'event_date' => array(
+				'description' => 'Date of event.',
+        		'type' => 'datetime',
+        		'mysql_type' => 'datetime',
+       			'pgsql_type' => 'timestamp without time zone',
+        		'sqlite_type' => 'varchar',
+        		'sqlsrv_type' => 'smalldatetime',
+				'default' => NULL,
+			),
+			'date_notified' => array(
+				'description' => 'Date notification email is sent out.',
+        		'type' => 'datetime',
+        		'mysql_type' => 'datetime',
+       			'pgsql_type' => 'timestamp without time zone',
+        		'sqlite_type' => 'varchar',
+        		'sqlsrv_type' => 'smalldatetime',
+				'default' => NULL,
+			),
+		),
+		'primary key' => array('brid'),
+	);
+	return $schema;
+}
+
+?>

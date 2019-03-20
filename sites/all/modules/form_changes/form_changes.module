@@ -1,0 +1,22 @@
+<?php
+
+function form_changes_form_alter(&$form, &$form_state, $form_id) {
+
+    if ($form_id == "tenant_info_node_form") {
+
+	  for ($i = 0; $i <= 10; $i++) { // up to 10 companies
+	    $co_name = $form['field_organization_name'][und][$i]['field_organization']['und'][0]['#entity']->field_organization['und'][0]['value'];	
+		if (strlen($co_name) > 0 ) {		
+		  $form['field_organization_name'][und][$i]['remove_button']['#value'] = "Remove $co_name Organization";
+		} 
+	  
+	    for ($ii = 0; $ii <= 30; $ii++) { // up to 30 people 
+	      $name = $form['field_organization_name'][und][$i]['field_staff_member_info'][und][$ii]['field_full_name_last_first_']['und'][0]['value']['#entity']->field_staff_first_name['und'][0]['value'];	
+		  if (strlen($name) > 0 ) {		
+		    $form['field_organization_name'][und][$i]['field_staff_member_info'][und][$ii]['remove_button']['#value'] = "Remove $name";
+		  }
+        }
+	  }
+	}
+	
+}

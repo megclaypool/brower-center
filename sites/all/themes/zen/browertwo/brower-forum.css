@@ -1,0 +1,21 @@
+.sidebar-left #content {
+ margin-left: 110px;
+ margin-right: -774px;
+ width: 664px;
+}
+
+#content-area {
+padding-left:5px;
+padding-right:5px;
+padding-top:20px;
+}
+
+table {
+ width: 100%;
+}
+
+#sidebar-left a {
+color: black;
+padding-left: 10px;
+}
+

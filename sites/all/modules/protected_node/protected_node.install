@@ -1,0 +1,172 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the protected_node module.
+ */
+
+/**
+ * Implements hook_requirements().
+ *
+ * Checks whether any role has access to protected nodes.
+ *
+ * @link http://api.drupal.org/api/function/hook_requirements/7
+ *
+ * @param string $phase
+ *   The current phase.
+ */
+function protected_node_requirements($phase) {
+  $reqs = array();
+
+  if ($phase == 'runtime') {
+    // Test whether any roles were given rights to the handle protected nodes.
+    // Note: since this is the runtime phase we do not have to force a load of
+    // the .module file.
+    /*
+    $perms = protected_node_perm();
+
+    $likes = array();
+    foreach ($perms as $perm) {
+      $likes[] = "perm LIKE '%%%s%%'";
+    }
+    $sql = "SELECT COUNT(rid) FROM {permission} WHERE " . implode(' OR ', $likes);
+    // @todo Please convert this statement to the D7 database API syntax.
+    $roles = db_query($sql, $perms)->fetchField();
+    if ($roles) {
+      $reqs['protected_node_rights'] = array(
+        'title' => t('Protected nodes access rights'),
+        'value' => format_plural($roles, 'One role has access to protected nodes. (!edit)',
+                                         '@count roles have access to protected nodes. (!edit)',
+              array('!edit' => l('edit permissions',
+                               'admin/user/permissions',
+                               array('fragment' => 'module-protected_node')))),
+        'severity' => REQUIREMENT_OK,
+      );
+    }
+    else {
+      $reqs['protected_node_rights'] = array(
+        'title' => t('Protected nodes access rights'),
+        'value' => t('None of the existing roles has !access',
+          array('!access' => l('permission to access protected nodes',
+                               'admin/user/permissions',
+                               array('fragment' => 'module-protected_node')))
+
+        ),
+        'description' => t('Without giving access to at least one role, no-one other than the administrator (UID=1) can created protected nodes or view protected nodes'),
+        'severity' => REQUIREMENT_ERROR,
+      );
+    }*/
+
+    // File attachment are not currently protected.
+    /*
+    switch (variable_get('file_downloads', FILE_DOWNLOADS_PUBLIC)) {
+    case FILE_DOWNLOADS_PRIVATE:
+      if (!module_exists('upload')) {
+        $reqs['protected_node_attachments'] = array(
+          'title' => t('Protected nodes attachments'),
+          'value' => t('Private attachments protection cannot work without the !upload.', array('!upload' => l('upload module', 'admin/build/modules', array('fragment' => 'edit-status-upload')))),
+          'description' => t('Please, install the upload module to protect private attachments with the node password.'),
+          'severity' => REQUIREMENT_ERROR
+        );
+      }
+      else {
+        $reqs['protected_node_attachments'] = array(
+          'title' => t('Protected nodes attachments'),
+          'value' => t('Private attachments are protected by Protected node'),
+          'description' => t('Remember that your file are really protected only if uploaded as attachments. Other methods may make your files public and thus unprotectable.'),
+          'severity' => REQUIREMENT_OK
+        );
+      }
+      break;
+
+    default:
+      $reqs['protected_node_attachments'] = array(
+        'title' => t('Protected nodes attachments'),
+        'value' => t('Public attachments are never protected by Protected node'),
+        'description' => t('Public attachments are by definition public and the Protected node module cannot intervene since your web server answers those requests on its own without any interventions by Drupal. This obviously means there is no way we could prevent the download of a public file.'),
+        'severity' => REQUIREMENT_WARNING
+      );
+      break;
+
+    }
+    **/
+  }
+
+  return $reqs;
+}
+
+/**
+ * Implements hook_schema().
+ */
+function protected_node_schema() {
+  $schema['protected_nodes'] = array(
+    'description' => 'The table to store the node - password hash pairs.',
+    'fields' => array(
+      'nid' => array(
+        'description' => t('The primary identifier for a node'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'protected_node_is_protected' => array(
+        'description' => 'Whether this node is currently protected.',
+        'type' => 'int',
+        'size' => 'small',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'protected_node_passwd' => array(
+        'description' => 'The sha1 hashed password for the given node.',
+        'type' => 'char',
+        'length' => 40,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'protected_node_passwd_changed' => array(
+        'description' => 'Date when the password was last changed',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'protected_node_show_title' => array(
+        'description' => 'Whether the title of the node should also be protected.',
+        'type' => 'int',
+        'size' => 'small',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'protected_node_hint' => array(
+        'description' => 'A hint about the password on this node.',
+        'type' => 'text',
+      ),
+    ),
+    'indexes' => array(
+      'protected_is_protected' => array('protected_node_is_protected'),
+      'protected_passwd' => array('protected_node_passwd'),
+    ),
+    'primary key' => array('nid'),
+  );
+
+  return $schema;
+}
+
+/**
+ * Implements hook_install().
+ */
+function protected_node_install() {
+  db_update('system')
+    ->fields(array(
+      'weight' => 80,
+    ))
+    ->condition('name', 'protected_node')
+    ->condition('type', 'module')
+    ->execute();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function protected_node_uninstall() {
+  db_delete('variable')
+    ->condition('name', 'protected_node_%%', 'LIKE')
+    ->execute();
+}

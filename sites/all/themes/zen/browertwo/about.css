@@ -1,0 +1,32 @@
+#sidebar-left ul.links li a.active
+{
+	background-color: #499ec4;
+}
+
+.item-list ul li
+{
+	padding-left: 0;
+	padding-bottom: 2em;
+}
+
+td
+{
+	padding-top: 0.75em;
+	padding-bottom: 0.75em;
+	padding-left: 1em;
+	vertical-align: top;
+}
+.view-data-node-data-field-publication-field-publication-value
+{
+	font-weight: bold;
+}
+
+td.view-field-node-data-field-publication-field-publication-value
+{
+	padding-left: 0;
+}
+
+td.view-field-node-data-field-publication-date-field-publication-date-value
+{
+	white-space: nowrap;
+}

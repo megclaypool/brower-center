@@ -1,0 +1,83 @@
+<?php
+/**
+* @file
+* Install, update and uninstall functions for the Identity module.
+*/
+require_once drupal_get_path('module', 'identity') . '/identity.module';
+
+function identity_requirements($phase) {
+  $requirements = array();
+  error_log("identity_requirements phase = $phase");
+  switch ($phase) {
+  case 'runtime':
+    $status = check_status();
+
+    $requirements = NULL;
+    $severity = FALSE;
+    $err = '';
+    if (!$status['key'])
+      $err .= 'No key found. ';
+    if (!$status['csr'])
+      $err .= 'No certificate request found. ';
+    if ($status['err'])
+      $err .= $status['err'];
+
+    if (!empty($err)) {
+      if (!$status['err'] && !$status['mail']) { // were in havent gone to setup mode
+        $severity = REQUIREMENT_INFO;
+        $err .= 'Please go to ' . l(t("settings"), "admin/config/security/identity") . ' to start the configuration. ';
+      } else if ($status['mail']) { // mail failed
+        $severity = REQUIREMENT_INFO;
+        $err .= 'Please email the identity.csr.pem file located in the sites/default/files/identity directory to <a href="mailto:&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;?Subject=Certificate Request">&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;</a>. ';
+      } else if ($status['err']) { // egregious failure, probably need debug log
+        $severity = REQUIREMENT_WARNING;
+        $err .= 'Please see <a href="https://www.ufp.com/identity/drupal/index.html#troubleshooting"> the troubleshooting section</a> for help. ';
+      }
+    } else {
+      if (!$status['crt']) { // waiting for Certificate
+        $severity = REQUIREMENT_INFO;
+        $err .= 'Usually within 24 hours you will receive a valid certificate. If you have questions please email <a href="mailto:&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;">&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;</a>. ';
+      } else if (!$status['identity_enabled']) { // waiting for cron
+        $severity = REQUIREMENT_INFO;
+        $err .= 'Waiting for cron to run, you may ' . l(t("run cron manually"), "admin/reports/status/run-cron") . '. ';
+      } else {
+        $expires = get_certificate_expires();
+        if ($expires) {
+          $severity = REQUIREMENT_OK;
+          if ($expires < 60) 
+            $severity = REQUIREMENT_WARNING;
+        }
+        $err .= "Identity installed correctly, and enabled. Certificate renewal will be required in $expires days. ";
+      }
+    }
+
+    if (($severity === FALSE) or empty($err)) {
+      $severity = REQUIREMENT_WARNING;
+      $err .= 'Identity is in an unknown state, please see <a href="https://www.ufp.com/identity/drupal/index.html#troubleshooting"> the troubleshooting section</a> for help. Or contact us at <a href="mailto:&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;">&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;</a>. ';
+    }
+    $requirements = array();
+    $requirements['identity'] = array(
+      'title'     => t('Identity'),
+      'severity'  => $severity,
+      'value'     => t($err),
+    );
+    error_log('requirements: ' . print_r($requirements, TRUE));
+    break;
+  }
+  return $requirements;
+}
+
+function identity_enable() {
+  $weight = db_select('system', 's')
+    ->fields('s', array('weight'))
+    ->condition('name', 'logintoboggan', '=')
+    ->execute()
+    ->fetchField();
+  error_log("found weight of $weight for logintoboggan");
+  db_update('system')
+    ->fields(array('weight' => $weight +10))
+    ->condition('name', 'identity', '=')
+    ->execute();
+  drupal_flush_all_caches();
+}
+?>

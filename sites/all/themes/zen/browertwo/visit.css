@@ -1,0 +1,13 @@
+#sidebar-left ul.links li a.active
+{
+	background-color: #4aaa48; /* 53be27 changed to 4aaa48 */
+}
+#content-area h1
+{
+	color: #4aaa48;
+}
+
+#content-area a
+{
+	color: #4aaa48;
+}

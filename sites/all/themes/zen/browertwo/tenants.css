@@ -1,0 +1,47 @@
+body.section-tenants #sidebar-left ul.links li a.active
+{
+	background-color: #f29c2b; /* 6d8eee changed to 2bada4; changed to f29c2b */
+}
+
+body.section-tenants #content-area a
+{
+	color: #f29c2b; /* f28900 nrl more saturated (less white) to stand out better */
+}
+body.section-tenants #content-area h1
+{
+	color: #f29c2b;
+}
+#content-area .item-list h1
+{
+	font-size: 1.0em;
+	font-weight: bold;
+	color: #2c2c2c;
+	margin: 0;
+	line-height: 1.33em;
+}
+
+#content-area .item-list h2, #content-area .item-list h3
+{
+	visibility: hidden;
+	display: none;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+#content-area .item-list p
+{
+	margin: 0;
+	padding: 0;
+}
+
+#content-area .view-item-tenants
+{
+	clear: left;
+	padding-bottom: 19px;
+}
+
+#content-area .tenant-column p
+{
+	line-height: 1.2em;
+	margin: 0 0 0.5em 0;
+}

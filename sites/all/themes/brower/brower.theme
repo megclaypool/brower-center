@@ -1,0 +1,53 @@
+<?php
+#include_once('util.php');
+function brower_primary_links($menu, $node = NULL)
+{
+#	global $bp_base_url;
+$bp_base_url = 'http://d5.openwebgroup.ca';
+  $output = "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n<tr>\n";
+  foreach ($menu as $menu_id => $menu_item)
+  {
+    if (substr($menu_id, -6) == 'active') {
+      $class = ' class="active menu_item"';
+    } else {
+      $class = ' class="menu_item"';
+    }
+    $output .= "<td align=\"right\" valign=\"middle\"$class>\n<a href=\"$bp_base_url/{$menu_item['href']}\">{$menu_item['title']}</a>\n</td>\n";
+  }
+  $output .= "</tr>\n</table>\n";
+  return $output;
+}
+
+function brower_secondary_links($menu, $node = NULL)
+{
+	global $bp_base_url;
+  if ($menu == NULL) return;
+  $output = "<table class=\"secondary\" border=\"0\" cellpadding=\"4\" cellspacing=\"0\" width=\"155\">\n";
+  foreach ($menu as $menu_id => $menu_item)
+  {
+    if (substr($menu_id, -6) == 'active') {
+      $class = ' class="active"';
+    } else {
+      $class = '';
+    }
+    $output .= "<tr>\n<td align=\"right\" valign=\"middle\"$class>\n<a href=\"$bp_base_url/{$menu_item['href']}\">{$menu_item['title']}</a>\n</td>\n</tr>\n";
+  }
+  $output .= "</table>\n";
+  return $output;
+}
+
+function brower_regions()
+{
+  return array(
+    'left' => t('left sidebar'),
+    'right' => t('right sidebar'),
+    'content' => t('content'),
+    'header' => t('header'),
+    'footer' => t('footer'),
+    'floater' => t('floater'),
+    'small_content' => t('small_content')
+  );
+}
+
+
+?>

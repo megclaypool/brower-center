@@ -1,0 +1,895 @@
+<?php
+//ini_set('error_log', '/tmp/identity_debug.log');
+ini_set('date.timezone', 'America/Los_Angeles');
+
+// may be replaced by drupal_static() in 7.x
+function identity_get_service_provider($reset = FALSE) {
+  $time_start = microtime(TRUE);
+  module_load_include('php', 'identity', 'identity4php/identity');
+  $directory = file_default_scheme() . '://identity/';
+  error_log('setting provider values directory = ' . $directory . ', realpath = ' .  drupal_realpath($directory . '/identity.key.pem'));
+  $provider = new IdentityServiceProvider();
+
+  $provider->getConnectionHandler()->setCAInfo('./' . drupal_get_path('module', 'identity') . '/' . variable_get('identity_ca_file', 'identity4php/truststore.pem'));
+  $provider->getConnectionHandler()->setSSLCert(drupal_realpath($directory) . '/' . variable_get('identity_cert_file', NULL));
+  $provider->getConnectionHandler()->setSSLKey(drupal_realpath($directory) . '/' . variable_get('identity_key_file', 'identity.key.pem'));
+  $encrypt_key = variable_get('identity_key_password', FALSE);
+  //error_log("debugging purposes only : $encrypt_key");
+  $provider->getConnectionHandler()->setSSLKeyPassword(($encrypt_key)?base64_decode($encrypt_key):NULL);
+  $time = microtime(TRUE) - $time_start;
+  error_log('took ' . $time . ' to return provider');
+  return $provider;
+}
+
+function identity_init() {
+  error_log('identity_init: ' . current_path());
+  $frequency = variable_get('identity_check_frequency', 1);
+  $delay = variable_get('identity_login_enabled', FALSE)?24:1;
+  $interval = 60 * 60 * $delay * $frequency;
+  if ((REQUEST_TIME - variable_get('identity_last_check', 0)) > $interval) {
+    error_log("identity_init: $delay hour update");
+    variable_set('identity_last_check', REQUEST_TIME);
+  }
+  if (!empty($_GET['q']) && (($_GET['q'] == 'node') || ($_GET['q'] == 'user')))
+    $GLOBALS['conf']['cache'] = FALSE;
+}
+
+function identity_permission() {
+  return array(
+    'administer identity module' => array(
+      'title' => t('Administer ufp Identity authentication module'),
+      'description' => t('Perform administration tasks for ufp Identity authentication module'))
+  );
+}
+
+function identity_help($path, $arg) {
+  switch ($path) {
+  case 'admin/help#identity':
+    return t('Allow ufp Identity to handle all your authentication needs, supporting strong passwords and other tokens (2FA and others) seamlessly.');
+  }
+}
+
+function identity_menu() {
+  //$items = array();
+
+  $items['admin/config/security'] = array(
+    'title' => 'Security',
+    'description' => 'Security related modules.',
+    'position' => 'left',
+    'weight' => -5,
+    'page callback' => 'identity_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'identity.admin.inc',
+  );
+
+  $items['admin/config/security/identity'] = array(
+    'title' => 'Identity Configuration',
+    'description' => 'Setup valid credentials',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('identity_admin'),
+    'access arguments' => array('administer identity module'),
+    'weight' => -10,
+    'type' => MENU_NORMAL_ITEM,
+   );
+
+  $items['abandon'] = array(
+    'title' => t('Abandon'),
+    'page callback' => 'identity_abandon',
+    'page arguments' => array(''),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['abandon/%'] = array(
+    'title' => t('Abandon'),
+    'page callback' => 'identity_abandon',
+    'page arguments' => array(1),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function identity_abandon($menu = '') {
+  error_log('identity_abandon: ' . $_SESSION['IDENTITY_USERNAME_KEY'] . ', menu: ' . $menu);
+  $provider = identity_get_service_provider();
+  $context = $provider->abandon($_SESSION['IDENTITY_USERNAME_KEY']);
+  process_context($context, $_SESSION['IDENTITY_USERNAME_KEY'], array('form' => $menu));
+}
+
+function identity_admin() {
+  $form = array('#attributes' => array('enctype' => 'multipart/form-data'));
+  $directory = file_default_scheme() . '://identity';
+
+  if (!is_file($directory . '/identity.csr.pem') || !is_file($directory . '/identity.key.pem')) {
+    $form['operation'] = array(
+      '#type' => 'hidden',
+      '#value' => 'csr',
+    );
+    $form['identity_csr'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Certificate Request Generation'),
+      '#description' => t('Please fill out this form to complete your site\'s enrollment. After you complete the form, your request will be processed and you will receive credentials allowing you to connect to the Identity service.'),
+      );
+      $form['identity_csr']['identity_countryName'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Country Name'),
+        '#maxlength' => 2,
+        '#description' => t('<a href="http://www.iso.org/iso/country_names_and_code_elements">2 Letter Country Code</a> e.g. US'),
+        '#required' => TRUE,
+      );
+      $form['identity_csr']['identity_stateOrProvinceName'] = array(
+        '#type' => 'textfield',
+        '#title' => t('State or Province Name'),
+        '#description' => t('Full state or province name e.g. California'),
+        '#required' => TRUE,
+      );
+      $form['identity_csr']['identity_localityName'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Locality Name'),
+        '#description' => t('Full locality name/city e.g. San Francisco'),
+        '#required' => TRUE,
+      );
+      $form['identity_csr']['identity_organizationName'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Organization Name'),
+        '#description' => t('Company e.g. Internet Widgets Pty Ltd'),
+        '#required' => TRUE,
+      );
+      $form['identity_csr']['identity_organizationalUnitName'] = array(
+        '#default_value' => variable_get('site_name', NULL),
+        '#type' => 'textfield',
+        '#title' => t('Organizational Unit'),
+        '#description' => t('Section e.g. Manufacturing Department'),
+      );
+      $form['identity_csr']['identity_commonName'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Common Name'),
+        '#description' => t('Domain Name e.g. example.com'),
+        '#required' => TRUE,
+      );
+      $form['identity_csr']['identity_emailAddress'] = array(
+        '#type' => 'textfield',
+        '#default_value' => variable_get('site_mail', NULL),
+        '#title' => t('eMail'),
+        '#description' => t('Your valid email e.g. alice@example.com'),
+        '#required' => TRUE,
+      );
+      $form['buttons']['reset'] =  array('#type' => 'submit', '#value' => t('Reset configuration') );
+      $form['#validate'][] = 'identity_admin_process_operation';
+  } else {
+    $form['operation'] = array(
+      '#type' => 'hidden',
+      '#value' => 'cert',
+    );
+
+    $expires = get_certificate_expires();
+    $description = 'Usually within 24 hours you will receive a valid certificate. If you have questions please email <a href="mailto:&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;">&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;</a>.';
+    if ($expires) {
+      $description = 'Current certificate will expire in ' . $expires . ' days. We will try to contact you 2 months prior to the certificate expiration to provide you with an updated certificate. If you have any questions, please email as at <a href="mailto:&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;">&#105;&#110;&#102;&#111;&#64;&#117;&#102;&#112;&#46;&#99;&#111;&#109;</a>.';
+    }
+    $form['identity_cert'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Received Certificate'),
+      '#description' => t($description),
+    );
+
+    $form['identity_cert']['identity_cert_file'] = array(
+      '#type' => 'file',
+      '#title' => t('Identity Certificate file'),
+    );
+
+    $form['identity_notme'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Not me'),
+      '#description' => t('Allows users to reset the login in cases where the username may be mistyped'),
+    );
+
+    $form['identity_notme']['identity_notme_enabled'] = array(
+      '#type' => 'checkbox',
+      '#title' => 'Enable Not me functionality',
+      '#default_value' => variable_get('identity_notme_enabled', FALSE),
+    );
+  }
+  $form['buttons']['submit'] = array('#type' => 'submit', '#value' => t('Save configuration') );
+  $form['#submit'][] = 'identity_system_settings_form_submit';
+  return $form;
+}
+
+function get_key($bit_length = 128) {
+  $fp = FALSE;
+  $key = FALSE;
+
+  $byte_length = (int)(($bit_length + 7) / 8);
+  if (@is_readable('/dev/urandom')) {
+    $fp = @fopen('/dev/urandom', 'rb');
+  } else {
+    $fp = @fopen('https://www.random.org/cgi-bin/randbyte?format=f&nbytes='. $byte_length, 'rb');
+  }
+  if ($fp) {
+    $key = base64_encode(@fread($fp, $byte_length));
+    @fclose($fp);
+  }
+  if (!$key)
+    error_log('unable to get a key');
+  return $key;
+}
+
+function identity_admin_process_operation(&$form, &$form_state) {
+  error_log('identity_admin_process_operation: ' . $form_state['values']['op']);
+}
+
+function identity_system_settings_form_submit($form, &$form_state) {
+  // we come second and 'op' has already been cleaned up
+  error_log('identity_system_settings_form_submit: ' . print_r($form_state, TRUE));
+  $op = isset($form_state['values']['op']) ? $form_state['values']['op'] : '';
+  if ($op == t('Save configuration')) {
+    $directory = file_default_scheme() . '://identity/';
+    $result = file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS, $form);
+    error_log("file_prepare_directory returns $result");
+    if ($result) {
+      switch ($form_state['values']['operation']) {
+      case 'csr':
+        $email = NULL;
+
+        $dn = array();
+        foreach ($form_state['values'] as $k => $v) {
+          $pos = strpos($k, 'identity_');
+          if ($pos !== FALSE) {
+            $name = substr($k, strlen('identity_'));
+            if (!empty($v))
+              $dn[$name] = $v;
+            if ($name == 'emailAddress') {
+              $email = $v;
+            }
+          }
+        }
+        $err = FALSE;
+        $mail_err = FALSE;
+        // now copy the module's .htaccess into the new directory
+        $access_file = './' . drupal_get_path('module', 'identity') . '/.htaccess';
+        $success = copy($access_file, $directory . '/.htaccess');
+        if ($success) {
+          // Generate a new private (and public) key pair
+          $config = array(
+            'private_key_bits' => 2048,
+            'private_key_type' => OPENSSL_KEYTYPE_RSA,
+            'encrypt_key' => TRUE,
+            'encrypt_key_cipher' => OPENSSL_CIPHER_3DES,
+            'digest_alg' => 'sha1',
+          );
+          $privkey = openssl_pkey_new($config);
+
+          // Generate a certificate signing request
+          $csr = openssl_csr_new($dn, $privkey);
+
+          // encrypt and export the key material
+          $encrypt_key = get_key();
+          if (!$encrypt_key)
+            $err = 'Unable to get a secret key. ';
+          error_log('exporting private key with config set to : ' . print_r($config, TRUE));
+          $success = openssl_pkey_export_to_file($privkey, drupal_realpath($directory) . '/identity.key.pem', ($encrypt_key)?base64_decode($encrypt_key):NULL, $config);
+          if ($success) {
+            openssl_free_key($privkey);
+            variable_set('identity_key_password', $encrypt_key);
+
+            // save off csr
+            $success = openssl_csr_export_to_file($csr, drupal_realpath($directory) . '/identity.csr.pem');
+            if ($success) {
+              // attempt to mail out the csr
+              $success = openssl_csr_export($csr, $csrout);
+              if ($success) {
+                if (!empty($email)) {
+                  $sent = drupal_mail('identity', 'csr', 'info@ufp.com', language_default(), array('csr' => $csrout, 'commonName' => $dn['commonName']));
+                  if (!$sent['result']) {
+                    $mail_err = TRUE;
+                    $err .= 'Failed to mail certificate request.';
+                  }
+                } else
+                  $err .= 'No email provided.';
+              } else
+                $err .= 'Failed to export certificate request to string.';
+            } else
+              $err .= 'Failed to export certificate request to file.';
+          } else
+            $err .= 'Failed to export private key to file.';
+        } else
+          $err .= 'Failed to copy ' . $access_file . ' to ' . drupal_realpath($directory) . '.';
+
+        if ($err) {
+          error_log($err);
+          $err_handle = @fopen(drupal_realpath($directory) . '/identity.err');
+          if ($err_handle) {
+            @fwrite($err_handle, $err . PHP_EOL);
+            @fclose($err_handle);
+          }
+        }
+
+        if ($mail_err) {
+          $err_handle = @fopen(drupal_realpath($directory) . '/identity.mail.err');
+          if ($err_handle) {
+            @fclose($err_handle);
+          }
+        }
+
+        if ($success) {
+          drupal_set_message('Your site is not yet secured by the Identity module. You should receive an email reply within 24 hours with an attached certificate that is ready for use.');
+        } else {
+          drupal_set_message($err . ' Please see our <a href="https://www.ufp.com/identity/drupal/#troubleshooting">troubleshooting tips</a>', 'error', FALSE);
+        }
+        break;
+      case 'cert':
+        // unless we do this, the filename will be munged
+        $error = $_FILES['files']['error']['identity_cert_file'];
+        error_log('processing cert with $_FILES error: '. print_r($error, TRUE));
+        if ($error == UPLOAD_ERR_OK) {
+          $allow_insecure_uploads = variable_get('allow_insecure_uploads', 0);
+          variable_set('allow_insecure_uploads', 1);
+          $validators = array('file_validate_extensions' => array(),);
+          $file = file_save_upload('identity_cert_file', $validators, $directory, FILE_EXISTS_REPLACE);
+
+          error_log('saved file: ' . print_r($file, TRUE));
+          // must do this to prevent file from being cleaned out
+          $file->status |= FILE_STATUS_PERMANENT;
+          file_save($file);
+          variable_set('identity_cert_file', $file->filename);
+          // set things back the way they were
+          variable_set('allow_insecure_uploads', $allow_insecure_uploads);
+          identity_get_service_provider(TRUE);
+          if (!variable_get('identity_login_enabled', FALSE) && !variable_get('identity_editing_disabled', FALSE)) {
+            error_log('resetting provider configuration');
+            $success = identity_import_users();
+            if ($success) {
+              // clean up error files
+              @unlink(drupal_realpath($directory) . '/identity.err');
+              @unlink(drupal_realpath($directory) . '/identity.mail.err');
+              drupal_set_message('Congratulations, almost there. Existing users are currently being imported into the Identity system. Please make sure cron is running to finalize the integration. Please avoid editing any users until the import is complete. See <a href="https://www.ufp.com/identity/drupal/#enroll">here</a> for more information.');
+            } else {
+              error_log('an error occured with import');
+              drupal_set_message('An error occurred. Please see our <a href="https://www.ufp.com/identity/drupal/#troubleshooting">troubleshooting tips</a>', 'error', FALSE);
+            }
+          }
+        }
+        variable_set('identity_notme_enabled', (bool)$form_state['values']['identity_notme_enabled']);
+        drupal_set_message(t('The configuration options have been saved.'));
+        break;
+      default:
+        error_log('unknown operation ' . $form_state['values']['operation']);
+        break;
+      }
+    } else
+      error_log('file_check_directory: ' . $directory . ' returned false');
+  }
+}
+
+function identity_user_insert(&$edit, &$account, $category) {
+  identity_user('insert', $edit, $account, $category);
+}
+
+function identity_user_delete($account) {
+  $edit = array();
+  identity_user('delete', $edit, $account);
+}
+
+function identity_user_update(&$edit, &$account, $category) {
+  identity_user('update', $edit, $account, $category);
+}
+
+function identity_user_presave(&$edit, &$account, $category) {
+  error_log('identity_user_presave : edit - ' . print_r($edit, TRUE) . PHP_EOL . 'account - ' . print_r($account, TRUE) . PHP_EOL . 'category - ' . print_r($category, TRUE));
+}
+
+function identity_user($op, &$edit, &$account, $category = NULL) {
+  // we want to do all the cross-cutting Identity stuff here and have a relatively Identity only handling of user edits
+  if (variable_get('identity_login_enabled', FALSE) || variable_get('identity_editing_disabled', FALSE)) {
+    if (in_array($op, array('insert', 'validate', 'update', 'delete'), TRUE)) {
+      identity_handle_user_operation($op, $edit, $account, $category);
+    }
+  }
+  unset($account->rawpass);
+}
+
+function identity_handle_user_operation($op, &$edit, &$account, $category) {
+  module_load_include('php', 'identity', 'identity4php/result');
+  $provider = identity_get_service_provider();
+  error_log('identity_user: ' . $op . ' ' . print_r($edit, TRUE) . PHP_EOL . print_r($account, TRUE));
+  switch ($op) {
+  case 'validate':
+    if (isset($edit['op']) && ($edit['op'] == 'Save')) {
+      if (variable_get('identity_editing_disabled', FALSE)) {
+        form_set_error('edit', t('Editing is currently disabled, please check back later'));
+      }
+    }
+    break;
+
+  case 'insert':
+    // hack for uber-cart
+    if (isset($_SESSION['cart_order'])) {
+      error_log('processing ubercart insert with order id: ' . print_r($_SESSION['cart_order'], TRUE));
+      module_load_include('module', 'uc_order');
+      $order = uc_order_load($_SESSION['cart_order']);
+      error_log('   with ubercart order: ' . print_r($order, TRUE));
+      $params = array('email' => $edit['mail'], 'password_hash' => $order->data['new_user']['hash'], 'type' => 'import',);
+      // what happens here if we set the pass to something else?
+      $context = $provider->enroll($edit['name'], $params);
+      if ($context['result']->getText() != 'SUCCESS') {
+        form_set_error('add', t($context['name'] . ': ' . $context['result']->getMessage()), TRUE);
+      }
+      
+    } else if (!isset($edit['authname_identity'])) {
+      $params = array('email' => $edit['mail'], 'passphrase' => $account->rawpass, 'type' => 'new',);
+      // what happens here if we set the pass to something else?
+      $context = $provider->enroll($edit['name'], $params);
+      if ($context['result']->getText() != 'SUCCESS') {
+        form_set_error('add', t($context['name'] . ': ' . $context['result']->getMessage()), TRUE);
+      }
+    }
+    break;
+
+  case 'update':
+    $params = array();
+    if (isset($edit['mail']) && ($edit['mail'] != $edit['original']->mail)) {
+      $params['email'] = $edit['original']->mail;
+      $params['new-email'] = $edit['mail'];
+    }
+
+    if (isset($edit['name']) && ($edit['name'] != $edit['original']->name))
+      $params['new-name'] = $edit['name'];
+
+    if (isset($account->rawpass) && !empty($account->rawpass))
+      $params['passphrase'] = $account->rawpass;
+
+    if (!empty($params)) {
+      $params['type'] = 'update';
+      $context = $provider->reenroll($edit['original']->name, $params);
+      if ($context['result']->getText() != 'SUCCESS') {
+        form_set_error('edit', t($context['name'] . ': ' . $context['result']->getMessage()), TRUE);
+      }
+    } else
+      error_log("no updates, not changing anything");
+    break;
+
+  case 'delete':
+    $params = array('type' => 'delete');
+    error_log('processing delete for uid ' . $account->uid . ' with name ' . $account->name . ' and email ' . $account->mail);
+    $context = $provider->reenroll($account->name, $params);
+    if ($context['result']->getText() != 'SUCCESS')
+      form_set_error('delete', t($context['name'] . ': ' . $context['result']->getMessage()), TRUE);
+    break;
+  }
+}
+
+function identity_import_users() {
+  $prefix = '$client_ip=' . $_SERVER['REMOTE_ADDR'] . PHP_EOL . '$type=import' . PHP_EOL . '$name,$email,$password_hash' . PHP_EOL;
+  $fp = fopen('data:text/plain,' . urlencode($prefix), 'rb'); // urlencoded data
+
+  $provider = identity_get_service_provider();
+  $success = $provider->batchEnroll($fp, 'identity_readfunction');
+  if ($success) {
+      variable_set('identity_editing_disabled', TRUE);
+  }
+  return $success;
+}
+
+function add_size($input, $size, $autocomplete = FALSE) {
+  error_log("adding size $size");
+  $doc = DOMDocument::loadXML($input);
+  $element = $doc->documentElement;
+  $element->setAttribute('size', $size);
+  $element->setAttribute('autocomplete', $autocomplete?'on':'off');
+  return $doc->saveXML($element);
+}
+
+function identity_form_alter(&$form, &$form_state, $form_id) {
+  //error_log('identity_form_alter with id ' . $form_id);
+  //error_log('identity_form_alter with form ' . print_r($form, TRUE));
+  //error_log('identity_form_alter with form_state ' . print_r($form_state, TRUE));
+}
+
+function identity_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+  error_log("identity_form_user_register_form_alter ($form_id) - form: " . print_r($form['#submit'], TRUE));
+  array_unshift($form['#submit'], 'identity_user_register_submit');
+  $form['#validate'][] = 'identity_user_register_validate';
+  if (!isset($form['#entity_builders']))
+    $form['#entity_builders'] = array();
+  $form['#entity_builders'][] = 'identity_entity_builder';
+  //error_log("identity_form_user_register_form_alter ($form_id) - form: " . print_r($form, TRUE));
+}
+
+function identity_entity_builder($entity_type, $entity, $form, $form_state) {
+  if ($entity_type == 'user') {
+    $pass = $entity->pass;
+    $entity->pass = 'unset';
+    $entity->rawpass = $pass;
+    $form_state['values']['rawpass'] = $pass;
+  }
+  //error_log("identity_entity_builder ($entity_type) - entity: " . print_r($entity, TRUE));
+  //error_log("identity_entity_builder ($entity_type) - form: " . print_r($form, TRUE));
+  //error_log("identity_entity_builder ($entity_type) - form_state: " . print_r($form_state, TRUE));
+}
+
+function identity_user_register_validate($form, &$form_state) {
+  error_log("identity_user_register_validate - form[values]: " . print_r($form_state['values'], TRUE));
+  $errors = form_get_errors();
+  error_log("identity_user_register_validate - errors: " . print_r($errors, TRUE));  
+  if (!$errors) {
+    $provider = identity_get_service_provider();
+    $pretext = $provider->preEnroll($form_state['values']['name'], array('type' => 'pre', 'email' => $form_state['values']['mail']));
+    if ($pretext['result']->getText() != 'SUCCESS') {
+      error_log('preenroll returned ' . $pretext['result']->getMessage() . ' ('. $pretext['result']->getText() . ') with a confidence of ' . $pretext['result']->getConfidence());
+      form_set_error('user', t('User registration error'));
+    }
+  }
+} 
+ 
+function identity_user_register_submit($form, &$form_state) {
+  //unset($form_state['user']->pass);
+  if (!empty($form_state['user'])) {
+    $form_state['user']->rawpass = $form_state['values']['pass'];
+    unset($form_state['values']['pass']);
+    error_log('identity_user_register_submit - form_state user: ' . print_r($form_state['user'], TRUE));
+  }
+  //error_log('identity_user_register_submit - form: ' . print_r($form, TRUE));
+  //error_log('identity_user_register_submit - form_state: ' . print_r($form_state, TRUE));
+}
+
+function identity_form_user_profile_form_alter(&$form, &$form_state, $form_id) {
+  module_load_include('php', 'identity', 'identity4php/display_item');
+  module_load_include('php', 'identity', 'identity4php/result');
+
+  //error_log('identity_form_user_profile_form_alter (form): ' . print_r($form, TRUE));
+  if (isset($form['#user']->data['editing_disabled']) && $form['#user']->data['editing_disabled']) {
+    unset($form['account']['pass']);
+    unset($form['account']['current_pass_required_values']['#value']['pass']);
+    unset($form_state['values']['current_pass_required_values']['pass']);
+    unset($form['account']['current_pass']);
+  } else {
+    foreach ($form['#validate'] as $index => $validate) {
+      if ($validate == 'user_validate_current_pass')
+        $form['#validate'][$index] = 'identity_validate_current_pass';
+    }
+    array_unshift($form['#submit'], 'identity_user_register_submit');
+  }
+  array_unshift($form['#validate'], 'identity_editing_enabled_validate');
+}
+
+function identity_editing_enabled_validate(&$form, &$form_state) {
+  $disabled = variable_get('identity_editing_disabled', FALSE);
+  error_log('identity_editing_enabled_validate: ' . ($disabled?'DISABLED':'ENABLED'));
+  if ($disabled)
+    form_set_error('edit', t('Editing is currently disabled, please check back later'));
+}
+
+function identity_validate_current_pass(&$form, &$form_state) {
+  $account = $form['#user'];
+  $success = FALSE;
+  //error_log('identity_validate_current_pass (form): ' . print_r($form, TRUE));
+  foreach ($form_state['values']['current_pass_required_values'] as $key => $name) {
+    error_log("processing key: $key, name: $name");
+    // This validation only works for required textfields (like mail) or
+    // form values like password_confirm that have their own validation
+    // that prevent them from being empty if they are changed.
+    error_log('checking key: ' . $form_state['values'][$key] . ', against: ' . $account->$key);
+    if ((strlen(trim($form_state['values'][$key])) > 0) && ($form_state['values'][$key] != $account->$key)) {
+
+      $provider = identity_get_service_provider();
+      $pretext = $provider->preAuthenticate($account->name);
+
+      if ($pretext['result']->getText() == 'SUCCESS') {
+        if (!_disable_edit($pretext['display_items'])) {
+          $parameter_name = $pretext['display_items'][0]->getName();
+          error_log('looking for ' . print_r($parameter_name, TRUE));
+          $params[$parameter_name] = $form_state['input']['current_pass'];
+          $context = $provider->authenticate($account->name, $params);
+
+          if ($context['result']->getText() == 'SUCCESS') {
+            $success = TRUE;
+          } else {
+            form_set_error('current_pass', t("Your current password is missing or incorrect; it's required to change the %name.", array('%name' => $name)));
+            form_set_error($key);
+            break;
+          }
+        }
+      }
+    }
+  }
+}
+
+function identity_form_user_login_block_alter(&$form, &$form_state, $form_id) {
+  //error_log('identity_form_alter with id ' . $form_id . ' before: ' . print_r($form, TRUE));
+  _identity_form_user_login_alter_handler($form, $form_state, $form_id);
+}
+
+function identity_form_user_login_alter(&$form, &$form_state, $form_id) {
+  //error_log('identity_form_alter with id ' . $form_id . ' before: ' . print_r($form, TRUE));
+  _identity_form_user_login_alter_handler($form, $form_state, $form_id);
+}
+
+function _identity_form_user_login_alter_handler (&$form, $form_state, $form_id) {
+  if ($form_id == 'user_login_block' || $form_id == 'user_login' ) {
+    $form['#attached']['css'] = array(
+      drupal_get_path('module', 'identity') .'/identity.css',
+    );
+    if (!empty($_SESSION['IDENTITY_USERNAME_KEY'])) {
+      $value = $_SESSION['IDENTITY_USERNAME_KEY'];
+      if (variable_get('identity_login_enabled', FALSE) && variable_get('identity_notme_enabled', FALSE))
+        $value .= '<div class="description"><span><a href="?q=abandon' . (($form_id == 'user_login')?'/user':'') . '">Not me</a></span></div>';
+      $form['name']['#type'] = 'item';
+      $form['name']['#markup'] = '<span id="user-id">' . $_SESSION['IDENTITY_USERNAME_KEY'] . '</span>';
+      $form['name']['#weight'] = -50;
+      $form['name']['#title'] = t('Username');
+      unset($form['name']['#required']);
+      unset($form['name']['#description']);
+      if (isset($form['links'])) {
+        error_log("links " . print_r($form['links'], TRUE));
+        unset($form['links']);
+      }
+      if (isset($form['lost_password'])) 
+        unset($form['lost_password']);
+
+      $form['#validate'] = array('identity_login_validate');
+      error_log('$form[\'name\']: ' . print_r($form['name'], TRUE));
+    } else {
+      foreach ($form['#validate'] as $index => $value) {
+        if ($value == 'user_login_authenticate_validate')
+          $form['#validate'][$index] = 'identity_login_validate';
+        if ($value == 'user_login_final_validate')
+          unset($form['#validate'][$index]);
+      }
+    }
+    //error_log('identity_form_alter after: ' . print_r($form, TRUE));
+    if (!empty($_SESSION['IDENTITY_DISPLAY_ITEMS'])) {
+      module_load_include('php', 'identity', 'identity4php/display_item');
+      $display_items = unserialize($_SESSION['IDENTITY_DISPLAY_ITEMS']);
+      error_log('identity_form_alter: display_items ' . print_r($display_items, TRUE));
+      foreach ($display_items as $index => $display_item) {
+        $form['auth-' . $index] = array('#markup' => '<label><abbr title="' . $display_item->getNickName() . '"><b>' . $display_item->getDisplayName() . '</b></abbr></label><span>' . add_size($display_item->getFormElement(), ($form_id == 'user_login') ? 60 : 15) . '</span>',
+                                        '#prefix' => '<div class="form-item">',
+                                        '#suffix' => '</div>',
+                                        '#weight' => -intval($index+1)*5,
+                                        '#required' => TRUE,);
+
+      }
+      drupal_add_js("document.forms['" . $form['#id'] . "'].elements['AuthParam0'].focus();", array('scope' => 'footer', 'type' => 'inline'));
+    }
+
+    $form['#submit'] = array('identity_login_submit');
+    error_log('identity_form_alter: form name ' . print_r($form['name'], TRUE));
+    unset($form['pass']);
+  }
+}
+
+function identity_login_submit($form, &$form_state) {
+  error_log('identity_login_submit called');
+  error_log('form validate set to ' . print_r($form['#validate'], TRUE));
+  error_log(' file directory path returns ' . file_default_scheme() . '://identity/');
+}
+
+function identity_readfunction($handle, $fp, $length) {
+  static $lastrow = 0;
+  static $trucking = TRUE;
+
+  $str = stream_get_contents($fp);
+  if (!$str)
+      $str = '';
+
+  /**
+   * Each line could potentially be 156 (60+32+64) characters + 2 for the comma separation. Also
+   * since we have to urlencode everything, absolute worst case is *3 %XX for every character. We'll
+   * meet half way and hope that not every single character is urlencoded. This may bite us if the site is primarily Shift-JIS
+   * or similar.
+   */
+  error_log('identity_readfunction: length ' . $length);
+  $divider = 158*1.5;
+  $numrows = floor($length / $divider);
+  if (!empty($str))
+    $numrows -= 3;
+
+  if ($trucking) {
+    $result = db_query_range('select name, mail, pass from {users} where NOT EXISTS (select uid from {authmap} where {users}.uid = {authmap}.uid and {authmap}.module = \'identity\') and uid > 0', $lastrow, $numrows);
+
+    $fetchedrows = 0;
+    while ($row = $result->fetchAssoc()) {
+      error_log('processing ' . $row['name'] . ' with email ' . $row['mail'] . ' and pass of ' . $row['pass']);
+      $str .= urlencode($row['name']) . ',' . urlencode($row['mail']) . ',' . urlencode($row['pass']) . PHP_EOL;
+      $fetchedrows++;
+    }
+    $lastrow += $fetchedrows;
+    if ($fetchedrows < $numrows)
+      $trucking = FALSE;
+    error_log('identity_readfunction: length of returned ' . strlen($str) . ", fetched $fetchedrows and total of $lastrow");
+  }
+  return $str;
+}
+
+function identity_mail($key, &$message, $params) {
+  error_log('identity_mail (key): ' . print_r($key, TRUE));
+  switch ($key) {
+  case 'csr':
+    $message['body'][] = $params['csr'];
+    $message['subject'] = 'Certificate Signing Request (' . $params['commonName'] . ')';
+    break;
+  default:
+    $message['send'] = FALSE;
+  }
+}
+
+function identity_cron() {
+  error_log("identity_cron");
+  $login_enabled = variable_get('identity_login_enabled', FALSE);
+  if (!$login_enabled) {
+    $provider = identity_get_service_provider();
+    $enrollFinished = $provider->checkEnrollStatus();
+    if ($enrollFinished) {
+      error_log('enabling identity login');
+      variable_set('identity_login_enabled', TRUE);
+      variable_del('identity_editing_disabled');
+    }
+  }
+}
+
+function _return_from_preauth() {
+  if (module_exists('logintoboggan')) {
+    $destination = drupal_get_destination();
+    error_log('_return_from_preauth: dealing with potential logintoboggan issue, destination is '.print_r($destination, TRUE));
+    if ($destination['destination'] == 'user/register')
+      drupal_goto('user/login');
+    else 
+      drupal_goto($destination['destination']);
+  }
+}
+
+function identity_login_validate($form, &$form_state) {
+  $errors = form_get_errors();
+
+  error_log('identity_login_validate: ' . print_r($errors, TRUE));
+  if ($errors) _return_from_preauth();
+
+  if (empty($_SESSION['IDENTITY_USERNAME_KEY']) && empty($_SESSION['IDENTITY_DISPLAY_ITEMS'])) {
+    if (!empty($form_state['values']['name'])) {
+      identity_preauthenticate($form_state['values']['name']);
+      _return_from_preauth();
+    }
+  } else {
+    $time_start = microtime(TRUE);
+    //error_log('identity_login_validate, form_state: ' . print_r($form_state, TRUE));
+    identity_authenticate($_SESSION['IDENTITY_USERNAME_KEY'], $form_state, unserialize($_SESSION['IDENTITY_DISPLAY_ITEMS']));
+    $time = microtime(TRUE) - $time_start;
+    error_log('authenticate took ' . $time . ' to complete');
+  }
+}
+
+function fake_login($name) {
+  return !variable_get('identity_login_enabled', FALSE);
+}
+
+function identity_preauthenticate($name) {
+  module_load_include('php', 'identity', 'identity4php/display_item');
+  module_load_include('php', 'identity', 'identity4php/result');
+  if (fake_login($name)) {
+    error_log('performing fake preauthenticate');
+    $_SESSION['IDENTITY_USERNAME_KEY'] = $name;
+    $d = new DisplayItem('passphrase');
+    $d->setDisplayName('Password');
+    $d->setNickName('Password');
+    $d->setFormElement('<input id="AuthParam0" type="password" name="passphrase" />');
+    $_SESSION['IDENTITY_DISPLAY_ITEMS'] = serialize(array($d));
+  } else {
+    $provider = identity_get_service_provider();
+    $pretext = $provider->preAuthenticate($name);
+
+    if ($pretext['result']->getText() == 'SUCCESS') {
+      $_SESSION['IDENTITY_USERNAME_KEY'] = $pretext['name'];
+      $_SESSION['IDENTITY_DISPLAY_ITEMS'] = serialize($pretext['display_items']);
+      error_log('identity_preauthenticate: pretext ' . print_r($pretext, TRUE));
+    } else {
+      form_set_error('name', t('Sorry, unrecognized username or password. <a href="@password">Have you forgotten your password?</a>', array('@password' => url('user/password'))));
+      error_log('identity_preauthenticate: error ' . $pretext['result']->getMessage());
+    }
+  }
+}
+
+function identity_authenticate($name, $form_state, $display_items) {
+  module_load_include('php', 'identity', 'identity4php/display_item');
+  module_load_include('php', 'identity', 'identity4php/result');
+  if (fake_login($name)) {
+    error_log("performing fake authenticate for $name" . print_r($form_state, TRUE));
+    $params = array(
+      'name' => $name,
+      'pass' => $form_state['input']['passphrase'],
+    );
+    unset($_SESSION['IDENTITY_USERNAME_KEY']);
+    unset($_SESSION['IDENTITY_DISPLAY_ITEMS']);
+    $form_state['uid'] = user_authenticate($name, $form_state['input']['passphrase']);
+    $form_state['values']['name'] = $name;
+    user_login_final_validate(array(), $form_state);
+    if ($form_state['uid'])
+      user_login_submit(array(), $form_state);
+    drupal_goto($form_state['redirect']);
+  } else {
+    $params = array();
+    error_log('identity_authenticate: display_items ' . print_r($display_items, TRUE));
+    //error_log('identity_authenticate: form_state ' . print_r($form_state, TRUE));
+    foreach ($display_items as $display_item) {
+      $parameter_name = $display_item->getName();
+      error_log('identity_authenticate: looking for ' . print_r($parameter_name, TRUE));
+      $params[$parameter_name] = $form_state['input'][$parameter_name];
+    }
+
+    $provider = identity_get_service_provider();
+    $context = $provider->authenticate($name, $params);
+    process_context($context, $name, $form_state);
+  }
+}
+
+function _disable_edit($display_items) {
+  $disable_edit = TRUE;
+  if (count($display_items) == 1) {
+    error_log('_disable_edit looking at display item named: ' . $display_items[0]->getName());
+    if ($display_items[0]->getName() == 'passphrase')
+      $disable_edit = FALSE;
+  }
+  return $disable_edit;
+}
+
+function process_context($context, $name, $form_state = NULL) {
+  if ($context['result']->getText() == 'CONTINUE') {
+    $_SESSION['IDENTITY_DISPLAY_ITEMS'] = serialize($context['display_items']);
+    drupal_set_message($context['result']->getMessage(), 'status');
+  } else if ($context['result']->getText() == 'RESET') {
+    unset($_SESSION['IDENTITY_USERNAME_KEY']);
+    unset($_SESSION['IDENTITY_DISPLAY_ITEMS']);
+    drupal_goto(/*$form_state['input']['form_id']*/);
+  } else if ($context['result']->getText() == 'SUCCESS') {
+    error_log('process_context, context: ' . print_r($context, TRUE));
+    $account = user_load_by_name($context['name']);
+    if ($account) {
+      if (_disable_edit(unserialize($_SESSION['IDENTITY_DISPLAY_ITEMS'])))
+        user_save($account, array('data' => array('editing_disabled' => TRUE)));
+      error_log('found account: ' . print_r($account, TRUE));
+      $form_state['uid'] = $account->uid;
+      user_login_submit(array(), $form_state);
+    }
+    //error_log('process_context after user_login_submit, form_state: ' . print_r($form_state, TRUE));
+    unset($_SESSION['IDENTITY_USERNAME_KEY']);
+    unset($_SESSION['IDENTITY_DISPLAY_ITEMS']);
+    drupal_goto($form_state['redirect']);
+  } else {
+    error_log('process_context: error ' . $context['result']->getMessage());
+    form_set_error('name', t('Sorry, unrecognized username or password. <a href="@password">Have you forgotten your password?</a>', array('@password' => url('user/password'))));
+  }
+}
+
+define('SECONDS_PER_DAY', 60 * 60 * 24);
+
+function get_certificate_expires() {
+  $directory = file_default_scheme() . '://identity/';
+
+  $expires = FALSE;
+  $cert = @file_get_contents($directory . variable_get('identity_cert_file', ""));
+  if ($cert) {
+    $ssl = openssl_x509_parse($cert);
+    $seconds = $ssl['validTo_time_t'] - time();
+    $expires = floor($seconds / SECONDS_PER_DAY);
+    error_log(print_r("expires in $expires days", TRUE));
+  }
+  return $expires;
+}
+
+function check_status() {
+  $status = array();
+
+  $directory = file_default_scheme() . '://identity';
+
+  $status['key'] = file_exists($directory . '/identity.key.pem');
+  $status['csr'] = file_exists($directory . '/identity.csr.pem');
+  $status['err'] = file_exists($directory . '/identity.err')?file_get_contents($directory . '/identity.err'):FALSE;
+  $status['mail'] = file_exists($directory . '/identity.mail.err');
+  $status['crt'] = variable_get('identity_cert_file', FALSE);
+  if ($status['crt'])
+    $status['crt'] = file_exists($directory . '/' . $status['crt']);
+  $status['identity_enabled'] = variable_get('identity_login_enabled', FALSE);
+  error_log('status: ' . print_r($status, TRUE));
+  return $status;
+}

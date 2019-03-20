@@ -1,0 +1,71 @@
+There is now a simple API with three functions ready to be used
+by 3rd party modules and a hook to allow for hiding 3rd party
+data that has to be protected.
+
+
+bool protected_node_set_protected(int $nid, string $passwd = NULL)
+=============================================================
+Protect the specified node.
+
+$nid can be the node identifier or any other field that the node_load()
+function accepts.
+
+Unless an error occurs, the function at least protects the node. When the
+$passwd parameter is specified, it also changes the password and as a side
+effect kicks out all the users who had previously enter that node password.
+
+All users will have to re-enter the password.
+
+The function returns TRUE if the node is protected.
+
+
+bool protected_node_unset_protected(int $nid)
+=============================================
+Unprotect the specified node.
+
+This function ensures that the specified node is not protected anymore.
+It does not delete the row from the database which means calling the
+protected_node_set_protected() function with the same $nid parameter
+will restore the previous state (assuming the node was protected before.)
+
+When the node was previously protected and this call succeeds, the method
+returns TRUE.
+
+If an invalid $nid is passed, an SQL error occurs or the node was not
+protected, FALSE is returned.
+
+
+bool protected_node_isset_protected(int $nid)
+=============================================
+Check whether the specified node is protected.
+
+This method returns TRUE if the node identified by the provided $nid is
+currently protected.
+
+Returns FALSE in all other cases (invalid $nid, SQL error, etc.)
+
+
+void hook_protected_node_hide(object &$node)
+============================================
+Request that $node parameters that are expected to be protected to somehow
+be removed from the $node.
+
+This function gives 3rd party modules adding content to a node a chance for
+hiding that content before displaying it gets displayed.
+
+The default implementation hides the body, teaser, and CCK content. It either
+replace the title with "Password protected page" or keeps it intact depending
+on the protected node Show Title flag.
+
+    function protected_node_protected_node_hide(&$node) {
+      // Core module fields
+      if (!$node->protected_node_show_title) {
+        $node->title = t('Password protected page');
+      }
+      $node->teaser = '';
+      $node->body = '';
+      $node->content = array();
+    }
+
+The hook is only invoked when the node is protected and the user did not yet
+provide the correct password.

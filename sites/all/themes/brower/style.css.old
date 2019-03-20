@@ -1,0 +1,305 @@
+/*
+Date Created: Sept 25, 2005
+Author: Al Franger (Modifications by Peter Haight)
+
+Client: Earth Island
+Project: Brower Center Site Build
+
+Description:
+The style sheet for the Brower Center site build.
+
+*/
+
+body
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: none;
+  color: #666666;
+  color: black;
+  font-weight: normal;
+  margin: 0px;
+  background-color: ffffff;
+}
+
+div
+{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+td 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: none;
+  color: #666666;
+  color: black;
+  font-weight: normal;
+}
+
+h1
+{
+  font: 14px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+h2
+{
+  font: 12px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #666666;
+  font-weight: bold;
+  padding: 10px 0 0 0;
+  margin: 0 0 0 0;
+}
+
+h3
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #666666;
+  font-weight: bold;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+p
+{
+  padding: 1em 0 0 0;
+  margin: 0 0 0 0;
+}
+
+b
+{
+  font-weight: bold;
+}
+
+strong
+{
+  font-weight: bold;
+}
+
+
+.glink 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: underline;
+  color: #576844;
+  font-weight: bold;
+}
+
+.glink:hover 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: underline;
+  color: #000000;
+  font-weight: bold;
+}
+
+.ffield 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: none;
+  color: #666666;
+  font-weight: normal;
+  height: 16px;
+  background-color: #FFFFFF;
+  border-width: 1;
+  border-color: #000000;
+}
+
+.fbutton 
+{
+  font: 10px verdana, arial, sans-serif;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #6E8B5F;
+  border-width: 1px;
+}
+
+.footer 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: none;
+  color: #A8A9A4;
+  font-weight: normal;
+}
+
+.flink 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: none;
+  color: #A8A9A4;
+  font-weight: normal;
+}
+
+.flink:hover 
+{
+  font: 10px verdana, arial, sans-serif;
+  text-decoration: underline;
+  color: #666666;
+  font-weight: normal;
+}
+
+a
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #78895F;
+  font-weight: bold;
+}
+
+a:hover
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: underline;
+  color: #95AB84;
+  font-weight: bold;
+}
+
+.ssnav 
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #78895F;
+  font-weight: bold;
+}
+
+.small_link
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #78895F;
+}
+
+.first_sentence td
+{
+  padding-bottom: 15px;
+}
+
+.ssnav:hover 
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: underline;
+  color: #95AB84;
+  font-weight: bold;
+}
+
+.pgTitle 
+{
+  font: 14px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #000000;
+  font-weight: bold;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.tabs ul
+{
+  list-style: none;
+}
+
+.menu_item a
+{
+  font: 10px "Tahoma", "Trebuchet", "Verdana", sans-serif;
+  color: #333333;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding-right: 15px;
+}
+
+.menu_item a:hover
+{
+  color: #78895F;
+  text-decoration: underline;
+}
+
+.active a
+{
+  color: #78895F;
+  text-decoration: underline;
+}
+
+.secondary tbody tr td a
+{
+  font: 10px "Verdana", "Arial", sans-serif;
+  text-decoration: none;
+  color: #78895F;
+  font-weight: bold;
+}
+
+.secondary tbody tr td a.active
+{
+  text-decoration: underline;
+}
+
+.view-content table
+{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.view-content table thead tr th
+{
+  font-size: 10px;
+  text-align: left;
+  border-bottom: 1px solid #78895F;
+}
+
+.view-content table tbody tr td
+{
+  padding-right: 30px;
+}
+
+.page_menu
+{
+  padding: 5px;
+  padding-top: 1px;
+  text-align: left;
+  font-size: 12px;
+  margin-left: 30px;
+  margin-top: 10px;
+  background-color: silver;
+}
+
+div#block-views-news_list div h3
+{
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+}
+
+.front_news_title
+{
+  color: #666666;
+  font-size: 11px; 
+}
+
+hr.green-line
+{
+  border: solid 1px #78895F;
+}
+
+table.photo_gallery tr td
+{
+  width: 100px;
+  text-align: center;
+}
+
+.sidebar_left
+{
+  padding-top: 20px;
+}
+
+.view-field-node-data-field-publication-field-publication-value
+{
+  width: 100px;
+}
+
+.view-field-node-data-field-publication-date-field-publication-date-value
+{
+  width: 70px;
+}

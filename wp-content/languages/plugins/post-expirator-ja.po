@@ -1,0 +1,398 @@
+# Translation of Plugins - Post Expirator - Stable (latest release) in Japanese
+# This file is distributed under the same license as the Plugins - Post Expirator - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-12-12 00:49:49+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/2.3.0-alpha\n"
+"Language: ja_JP\n"
+"Project-Id-Version: Plugins - Post Expirator - Stable (latest release)\n"
+
+#. Author URI of the plugin/theme
+msgid "http://postexpirator.tuxdocs.net/"
+msgstr "http://postexpirator.tuxdocs.net/"
+
+#. Author of the plugin/theme
+msgid "Aaron Axelsen"
+msgstr "Aaron Axelsen"
+
+#. Description of the plugin/theme
+msgid "Allows you to add an expiration date (minute) to posts which you can configure to either delete the post, change it to a draft, or update the post categories at expiration time."
+msgstr "記事に対して利用期限日時を設定可能にします。利用期限切れ時に記事の削除、下書きへの変更、カテゴリーの更新などが可能になります。"
+
+#. Plugin URI of the plugin/theme
+msgid "http://wordpress.org/extend/plugins/post-expirator/"
+msgstr "http://ja.wordpress.org/extend/plugins/post-expirator/"
+
+#: post-expirator.php:1311
+msgid "Category: Remove"
+msgstr "カテゴリー: 除外"
+
+#: post-expirator.php:1310
+msgid "Category: Add"
+msgstr "カテゴリー: 追加"
+
+#: post-expirator.php:1309
+msgid "Category: Replace"
+msgstr "カテゴリー: 置換"
+
+#: post-expirator.php:1307
+msgid "Private"
+msgstr "非公開"
+
+#: post-expirator.php:1306
+msgid "Delete"
+msgstr "削除"
+
+#: post-expirator.php:1305
+msgid "Draft"
+msgstr "下書き"
+
+#: post-expirator.php:1023
+msgid "Below is a dump of the debugging table, this should be useful for troubleshooting."
+msgstr "下記は、デバックテーブルのダンプであり、これはトラブルシューティングのために活用されるべきです。"
+
+#: post-expirator.php:1002
+msgid "Single Event"
+msgstr "単一のイベント"
+
+#: post-expirator.php:977
+msgid "Arguments / Schedule"
+msgstr "引数 / スケジュール"
+
+#: post-expirator.php:976
+msgid "Event"
+msgstr "イベント"
+
+#: post-expirator.php:975
+msgid "Date"
+msgstr "日付"
+
+#: post-expirator.php:971
+msgid "The below table will show all currently scheduled cron events with the next run time."
+msgstr "以下のテーブルは次回実行のためにスケジュールされているすべての cron イベントを表示しています。"
+
+#: post-expirator.php:969
+msgid "Current Cron Schedule:"
+msgstr "現在の Cron スケジュール:"
+
+#: post-expirator.php:963
+msgid "ENABLED - OK"
+msgstr "有効 - OK"
+
+#: post-expirator.php:961
+msgid "DISABLED"
+msgstr "無効"
+
+#: post-expirator.php:957
+msgid "WP-Cron Status:"
+msgstr "WP-Cron ステータス:"
+
+#: post-expirator.php:953
+msgid "Purge Debug Log"
+msgstr "デバッグログを削除する"
+
+#: post-expirator.php:951
+msgid "Purge Debug Log:"
+msgstr "デバッグログ削除:"
+
+#: post-expirator.php:943
+msgid "Enable Debugging"
+msgstr "デバッグを有効化"
+
+#: post-expirator.php:942
+msgid "Status: Disabled"
+msgstr "ステータス: 無効"
+
+#: post-expirator.php:940
+msgid "Disable Debugging"
+msgstr "デバッグを無効化"
+
+#: post-expirator.php:939
+msgid "Status: Enabled"
+msgstr "ステータス: 有効"
+
+#: post-expirator.php:935
+msgid "Post Expirator Debug Logging:"
+msgstr "Post Expirator デバッグログ:"
+
+#: post-expirator.php:932
+msgid "Advanced Diagnostics"
+msgstr "高度な診断"
+
+#: post-expirator.php:924
+msgid "Debugging Table Emptied"
+msgstr "デバッグテーブルを空にしました"
+
+#: post-expirator.php:919
+msgid "Debugging Enabled"
+msgstr "デバッグ有効化済み"
+
+#: post-expirator.php:916
+msgid "Debugging Disabled"
+msgstr "デバッグ無効化済み"
+
+#: post-expirator.php:889
+msgid "Taxonomy (hierarchical):"
+msgstr "タクソノミー (階層状):"
+
+#: post-expirator.php:885
+msgid "Select whether the post expirator is enabled for all new posts."
+msgstr "すべての新規投稿時に利用期限機能を有効化するかどうか選択してください。"
+
+#: post-expirator.php:880
+msgid "Auto-Enable?"
+msgstr "自動で有効化しますか ?"
+
+#: post-expirator.php:876
+msgid "Select the default expire action for the post type."
+msgstr "利用期限終了時に、この投稿タイプに対して行うデフォルト処理を選択してください。"
+
+#: post-expirator.php:871
+msgid "How to expire:"
+msgstr "期限切れ時の処理:"
+
+#: post-expirator.php:867
+msgid "Select whether the post expirator meta box is active for this post type."
+msgstr "この投稿タイプで post expirator メタボックスを有効にするかどうか選択してください。"
+
+#: post-expirator.php:865
+msgid "Inactive"
+msgstr "停止中"
+
+#: post-expirator.php:864
+msgid "Active"
+msgstr "有効"
+
+#: post-expirator.php:862
+msgid "Active:"
+msgstr "有効状態:"
+
+#: post-expirator.php:839
+msgid "Use the values below to set the default actions/values to be used for each for the corresponding post types.  These values can all be overwritten when creating/editing the post/page."
+msgstr "対応する投稿タイプのそれぞれに使用するデフォルトアクションおよび初期値を設定するには、以下の値を使用してください。これらの設定値は記事の作成および更新時にすべて上書きすることができます。"
+
+#: post-expirator.php:837
+msgid "Default Expiration Values"
+msgstr "利用期限の初期設定"
+
+#: post-expirator.php:791 post-expirator.php:902
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: post-expirator.php:786
+msgid "The inline css which will be used to style the footer text."
+msgstr "フッターテキストをデザインを設定するために使われるインラインCSS"
+
+#: post-expirator.php:784
+msgid "This post will expire on"
+msgstr "投稿の有効期限:"
+
+#: post-expirator.php:781
+msgid "Footer Style:"
+msgstr "フッタースタイル:"
+
+#: post-expirator.php:772
+msgid "Enter the text you would like to appear at the bottom of every post that will expire.  The following placeholders will be replaced with the post expiration date in the following format:"
+msgstr "有効期限が切れるすべての投稿の下部に表示させたいテキストを入力してください。下記の内容は、下記のフォーマットで投稿の有効期限に置き換わります。"
+
+#: post-expirator.php:768
+msgid "Footer Contents:"
+msgstr "フッターコンテンツ:"
+
+#: post-expirator.php:764
+msgid "This will enable or disable displaying the post expiration date in the post footer."
+msgstr "記事のフッターへの利用期限表示を有効化または無効化します。"
+
+#: post-expirator.php:762 post-expirator.php:883
+msgid "Disabled"
+msgstr "無効"
+
+#: post-expirator.php:761 post-expirator.php:882
+msgid "Enabled"
+msgstr "有効"
+
+#: post-expirator.php:759
+msgid "Show in post footer?"
+msgstr "記事のフッターに表示しますか ?"
+
+#: post-expirator.php:756
+msgid "Enabling this below will display the expiration date automatically at the end of any post which is set to expire."
+msgstr "以下の設定を有効化した場合、利用期限の設定されている記事の最後に自動的に利用期限日時が表示されます。"
+
+#: post-expirator.php:755
+msgid "Post Footer Display"
+msgstr "記事フッター表示"
+
+#: post-expirator.php:750
+msgid "Set's the default expiration category for the post."
+msgstr "期限切れで変更されるカテゴリーの初期選択状態を設定してください。"
+
+#: post-expirator.php:739
+msgid "Default Expiration Category"
+msgstr "期限切れで変更されるカテゴリー初期値"
+
+#: post-expirator.php:736
+msgid "Category Expiration"
+msgstr "期限切れで変更されるカテゴリー"
+
+#: post-expirator.php:726
+msgid "Set the default expiration date to be used when creating new posts and pages.  Defaults to none."
+msgstr "投稿や固定ページ新規追加時に使用されるデフォルトの利用期限日時を設定してください。デフォルトは「なし」です。"
+
+#: post-expirator.php:723
+msgid "Post/Page Publish Time"
+msgstr "投稿 / 固定ページ公開日時"
+
+#: post-expirator.php:722
+msgid "Custom"
+msgstr "カスタム"
+
+#: post-expirator.php:721
+msgid "None"
+msgstr "なし"
+
+#: post-expirator.php:718
+msgid "Default Date/Time Duration:"
+msgstr "初期設定期間:"
+
+#: post-expirator.php:714
+msgid "The default format to use when displaying the expiration time within a post using the [postexpirator] shortcode or within the footer.  For information on valid formatting options, see: <a href=\"http://us2.php.net/manual/en/function.date.php\" target=\"_blank\">PHP Date Function</a>."
+msgstr "[postexpirator] ショートコードを使った投稿またはフッターでの利用期限表示に使用される時刻のデフォルト書式。有効な書式オプションについての情報は、<a href=\"http://us2.php.net/manual/ja/function.date.php\" target=\"_blank\">PHP Date Function</a>をご覧ください。"
+
+#: post-expirator.php:710
+msgid "Time Format:"
+msgstr "時刻の書式:"
+
+#: post-expirator.php:702
+msgid "Date Format:"
+msgstr "日付の書式:"
+
+#: post-expirator.php:694
+msgid "timeformat - format set here will override the value set on the settings page"
+msgstr "timeformat - 引数で設定された書式は、設定ページの値を上書きします。"
+
+#: post-expirator.php:693
+msgid "dateformat - format set here will override the value set on the settings page"
+msgstr "dateformat - 引数で設定された書式は、設定ページの値を上書きします。"
+
+#: post-expirator.php:692
+msgid "type - defaults to full - valid options are full,date,time"
+msgstr "type - デフォルトは full - その他に有効なオプション full,date,time"
+
+#: post-expirator.php:690
+msgid "Valid [postexpirator] attributes:"
+msgstr "[postexpirator] で有効な引数:"
+
+#: post-expirator.php:687
+msgid "The post expirator plugin sets a custom meta value, and then optionally allows you to select if you want the post changed to a draft status or deleted when it expires."
+msgstr "post expirator プラグインは、カスタムフィールドに値を設定し、期限切れになった時に記事を下書きにしたり削除したりしたい場合、投稿者は必要に応じてそれを選択することができます。"
+
+#: post-expirator.php:663 post-expirator.php:829
+msgid "Saved Options!"
+msgstr "設定を保存しました。"
+
+#: post-expirator.php:619 post-expirator.php:638
+msgid "Post Expirator Options"
+msgstr "Post Expirator 設定"
+
+#: post-expirator.php:608
+msgid "View Debug Logs"
+msgstr "デバッグログを表示"
+
+#: post-expirator.php:607
+msgid "Diagnostics"
+msgstr "診断"
+
+#: post-expirator.php:606 post-expirator.php:699
+msgid "Defaults"
+msgstr "初期設定"
+
+#: post-expirator.php:605
+msgid "General Settings"
+msgstr "一般設定"
+
+#: post-expirator.php:259
+msgid "Taxonomy Name"
+msgstr "タクソノミー名"
+
+#: post-expirator.php:238
+msgid "Expiration Categories"
+msgstr "期限切れで変更されるカテゴリー"
+
+#: post-expirator.php:227
+msgid "How to expire"
+msgstr "期限切れ時の処理"
+
+#: post-expirator.php:207
+msgid "Minute"
+msgstr "分"
+
+#: post-expirator.php:206
+msgid "Hour"
+msgstr "時"
+
+#: post-expirator.php:174
+msgid "Day"
+msgstr "日"
+
+#: post-expirator.php:173
+msgid "Month"
+msgstr "月"
+
+#: post-expirator.php:172
+msgid "Year"
+msgstr "年"
+
+#: post-expirator.php:169
+msgid "The published date/time will be used as the expiration value"
+msgstr "公開されたdate/time は、期限満了値として利用されます。"
+
+#: post-expirator.php:166
+msgid "Enable Post Expiration"
+msgstr "投稿有効期限を設定する"
+
+#. #-#-#-#-#  tmp-post-expirator.pot (Post Expirator 2.1.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: post-expirator.php:94 post-expirator.php:638
+msgid "Post Expirator"
+msgstr "Post Expirator"
+
+#: post-expirator.php:79
+msgid "Never"
+msgstr "期限なし"
+
+#: post-expirator.php:53 post-expirator.php:65
+msgid "Expires"
+msgstr "期限"
+
+#: post-expirator.php:33
+msgid "Settings"
+msgstr "設定"
+
+#: post-expirator.php:24
+msgid "Post expires at EXPIRATIONTIME on EXPIRATIONDATE"
+msgstr "記事の有効期限: EXPIRATIONDATE EXPIRATIONTIME"
+
+#: post-expirator.php:23
+msgid "g:ia"
+msgstr "g:ia"
+
+#: post-expirator.php:22
+msgid "l F jS, Y"
+msgstr "Y年n月j日 l"
+
+#: post-expirator-debug.php:52
+msgid "Message"
+msgstr "メッセージ"
+
+#: post-expirator-debug.php:51
+msgid "Timestamp"
+msgstr "タイムスタンプ"
+
+#: post-expirator-debug.php:47
+msgid "Debugging table is currently empty."
+msgstr "デバッグテーブルは現在空です。"

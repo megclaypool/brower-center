@@ -1,0 +1,36 @@
+#sidebar-left ul.links li a.active
+{
+	background-color: #2BADA4; /* fef734 changed to 938177; to 2BADA4*/
+}
+#content-area h1, #content-area a
+{
+	color: #2BADA4; /* a0a0a0 changed to 938177 */
+}
+
+#content-area .item-list h1
+{
+	font-size: 1.0em;
+	font-weight: bold;
+	color: #2BADA4; /* 2c2c2c changed to 938177 */
+	margin: 0;
+	line-height: 1.33em;
+}
+
+#content-area .item-list h2, #content-area .item-list h3
+{
+	visibility: hidden;
+	display: none;
+	font-size: 1px;
+	line-height: 1px;
+}
+
+#content-area .item-list li
+{
+	margin-bottom: 1.5em;
+}
+
+#content-area .item-list li p
+{
+	margin: 0 0 1em 0;
+	padding: 0;
+}

@@ -1,0 +1,134 @@
+$font-stack: "proxima-nova", Sans-Serif;
+$base-color-nav: #444;
+$second-color-nav: #3fa4a4;
+$main-bgnd: #3ea2a2;
+$link-text: #3fa4a4;
+$basic-grey: #aaa;
+$link-text-header: #333;
+$base-color-icon: #333;
+$header-bgnd: #fff;
+$form-bgnd: #dcdbd9;
+$base-text: #000;
+$text-on-color: #fff;
+/* pink */
+$action-color-1: #e31478;
+/* yellow */
+$action-color-2: #fbb731;
+/* teal */
+$action-color-3: #3fa4a4;
+/* lime green */
+$action-color-4: #c1d540;
+$form-button: #000;
+
+a{
+	color: $link-text;
+	&:hover{
+		color: rgba($base-text, .4);
+	}
+	&:visited{
+		color: $link-text;
+	}
+}
+a.btn{
+	&:visited{
+		color: $text-on-color;
+	}
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+body {
+ font-family: $font-stack;
+ font-size: 16px;
+ line-height: 24px;
+}
+
+h1, h2, h3, h4, h5 {
+	color: $base-text;
+	a{
+		color: $base-text;
+		&:hover{
+			color: rgba($base-text, .5);
+			text-decoration: none;
+		}
+		&:visited{
+			color: $base-text;
+		}
+	}
+}
+p {
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 22px;
+}
+
+b,
+strong {
+	font-weight: bold;
+}
+
+i,
+em {
+	font-style: italic;
+}
+
+.entry-content {
+	h1, h2, h3, h4, h5 {
+		text-transform: uppercase;
+		margin-top: 0;
+	}
+	h1{
+		font-size: 20px;
+	}
+	h2{
+		font-size: 20px;
+	}
+	h3{
+		font-size: 18px;
+	}
+	p {
+		margin-bottom: 25px;
+	}
+	ul,
+	ol {
+		margin-bottom: 45px;
+		margin-left: -24px;
+	}
+	li {
+		margin-bottom: 15px;
+	}
+	blockquote {
+
+	}
+}
+
+.thumbnail, .wp-caption {
+	border: 0 none;
+	padding: 0;
+}
+
+.wp-caption-text {
+  padding: 5px 12px;
+  background: #e7e7e7;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* UI Elements */
+.btn {
+
+}
+
+/* Forms */
+input[type="text"],
+input[type="email"],
+input[type="date"] {
+
+}
+
+input[type="sumit"] {
+
+}

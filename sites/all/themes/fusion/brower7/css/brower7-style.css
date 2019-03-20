@@ -1,0 +1,1894 @@
+/** dean's additions/overrides - start **/
+
+/* styles for the 2014 version of past exhibitions */
+
+.view-past-exhibitions-v2 .views-row {
+  /* border-bottom: 1px dashed #ccc; */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.views-field-field-exhibition-past-thumbnail {
+  vertical-align: top;
+  padding-right: 10px;
+}
+
+.views-field-field-exhibition-past-title{
+  font-size: 1em;
+}
+
+.views-field-field-exhibition-past-title .past_title {
+  color: #499ec4;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.views-field-field-exhibition-past-title .past_subtitle {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.views-field-field-exhibition-past-title .past_dates {
+  font-weight: bold;
+  text-decoration: none;
+  padding-bottom: 1em;
+}
+
+/* add left and bottom spacing to right-aligned tables */
+table.float-right {
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+/* hide redundant volunteer application headline */
+
+#block-webform-client-block-1290 h2 {
+  display: none;
+}
+
+/* Internal Meetings overrides */
+
+#pid-node-add-internal-meetings h1.title {
+  display: none !important;
+}
+
+
+
+/* new Rental Page styles */
+
+.event-space {
+  background: #e2f6fb;
+  width: 100%;
+  height: 136px;
+  margin-bottom: 20px;
+}
+
+.event-space img{
+  padding: 12px 24px 12px 12px;
+  float: left;
+}
+
+.event-space .my-text{
+  padding-top: 40px;
+}
+
+#pid-rentals  .content-inner a{
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+.event-space:hover {
+  background: #f3fbfd;
+}
+
+/* blog styles */
+
+.page-blog  #main-content-inner a{
+  color: #aecb2d !important;
+}
+
+.view-our-blog  .views-field-title a{
+  font-size: 169%;
+  color: #aecb2d;
+  text-decoration: none !important; 
+}
+
+.view-our-blog   .views-field-title a:hover{
+  text-decoration: underline; 
+}
+
+.view-our-blog  .views-row{
+  padding-bottom: 25px;
+  clear: left;
+}
+
+.view-our-blog  .views-field-created{
+  position: relative;
+  top: -3px;
+  color: #aaaaaa;
+}
+
+.page-taxonomy-term .submitted,
+.node-type-blog-post .submitted {
+  color: #aaaaaa;
+}
+
+.view-our-blog .views-field-field-blog-categories .field-content:before{
+  content:"Categories: ";
+}
+
+.view-our-blog  .views-field-view-node {
+  position: relative;
+  top: -6px;
+}
+
+.view-recent-posts .views-row {
+  padding-bottom: 5px;
+}
+
+
+.view-recent-posts .views-row {
+  background-image: url("/files/green_dot.png");
+  background-repeat: no-repeat;
+  background-position: left 8px;
+}
+.view-recent-posts .views-field-title {
+    margin-left: 10px;
+}
+
+.view-recent-posts .field-content  a{
+  text-decoration: none;
+
+}
+
+.view-recent-posts .field-content  a:hover{
+  text-decoration: underline;
+}
+
+#block-flickr-3 .gutter {
+  margin-right: 0px !important;
+}
+
+.flickr-photo-img {
+    padding-left: 12px;
+	padding-bottom: 12px;
+}
+  
+/* 2013 party page styles */
+
+
+#pid-programs-party h1.title {
+  color: #413d7b !important;
+  font-weight: bold;
+
+}
+
+#pid-programs-party #subhead {
+  color: #3d6db5;
+  font-size: 18px;
+  position: relative; 
+  top: -10px;
+}
+
+#pid-programs-party #date{
+  padding-top: 10px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 1px dotted #000000;
+}
+
+#pid-programs-party #first_graf{
+  color: #0095a7;
+  font-size: 16px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px dotted #000000;
+  border-bottom: 1px dotted #000000;
+}
+
+#pid-programs-party #featuring {
+  padding-top: 20px;
+  color: #3d6db5;
+  font-size: 14px;
+  font-weight: bold;
+  padding-bottom: 20px;
+  border-bottom: 1px dotted #000000;
+}
+
+#pid-programs-party #featuring p{
+    color: #3d6db5;
+}
+#pid-programs-party .black {
+    color: #000;
+	font-style: italic;
+}
+
+#pid-programs-party #vip {
+  color: #3d6db5;
+}
+
+#pid-programs-party #tickets {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 1px dotted #000000;
+}
+
+#pid-programs-party #bottom {
+  padding-top: 20px;
+  color: #000000;
+  font-size: 14px;
+  border-bottom: 1px dotted #000000;
+}
+
+#pid-programs-party .thanks {
+  color: #3d6db5;
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 1px dotted #000000;
+}
+
+}
+
+/* end party styles */
+
+#webform-client-form-1290 .fieldset-legend {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+body.exhibitions #preface-bottom .block,
+body.exhibitions #preface-bottom .block .content,
+#exhibition-nav-tabs-border {
+  width: 576px !important;
+} 
+
+#exhibition-nav-tabs-border {
+  width: 572px !important;
+}
+
+ul.exhibition-nav-tabs li {
+  font-weight: normal !important;
+}
+
+ul.tabs_three li {
+  width: 188px !important;
+}
+
+ul.tabs_four li {
+  width: 140px !important;
+}
+
+h1 {
+    font-size: 169%;
+    font-weight: normal;
+} 
+
+html.js table#field-organization-name-values fieldset ,
+html.js table#field-organization-name-values fieldset.collapsed {
+    margin-bottom: 0px;
+}
+
+table#field-organization-name-values {
+  border: 1px solid #ccc;
+  padding-left: 10px;
+}
+
+table#field-organization-name-values tr{
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+}
+
+table#field-organization-name-values td{
+  
+  padding-bottom: 20px;
+  font-size: 1em;
+}
+
+#field-organization-name-values .field-name-field-full-name-last-first- ,
+#field-organization-name-values #field_collection_item_field_staff_member_info_form_group_staff_info ,
+#field-organization-name-values .form-item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#field-organization-name-add-more-wrapper .field-multiple-drag {
+  background: 
+}
+
+/** this bit removes the edit/add/remove links on the tenant contact listing node pages cause they are confusing **/
+
+body.node-type-tenant-info  ul.field-collection-view-links,
+body.node-type-tenant-info  ul.action-links {
+  display: none;
+}
+
+body.node-type-tenant-info .field-collection-item-field-organization-name ul.field-collection-view-links {
+  display: inline;
+}
+ 
+.view-tenant-user-emails,
+.view-resident-organization-contact-info-control-panel,
+.view-resident-organization-contact-info-by-person,
+.view-resident-info-by-person2  th,
+.view-residentinfo-by-person2 tbody th, 
+.view-resident-info-by-person2 thead th,
+.view-resident-info-by-person2 td {
+  font-size: 12px;
+}
+
+.view-resident-organization-contact-info-control-panel .views-table{
+  margin-bottom: 20px;
+}
+
+.view-resident-organization-contact-info .view-header {
+  float: left;
+  margin-rught: 10px;
+}
+
+.view-resident-organization-contact-info .view-content {
+  padding: 13px;
+}
+
+#views_slideshow_controls_text_pause_slideshow_big_thumbs-block {
+	display: none;
+}
+
+#widget_pager_bottom_slideshow_big_thumbs-block {
+  width: 100%;
+  text-align: center;
+}
+
+.views-slideshow-controls-bottom {
+  margin: 0 auto !important;
+}
+
+#views_slideshow_controls_text_previous_slideshow_big_thumbs-block,
+#views_slideshow_controls_text_next_slideshow_big_thumbs-block{
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 0px;
+  top: 0px;
+  z-index: 1001;
+  padding-top: 25px;
+  overflow: hidden;
+  opacity:0.4;
+  filter:alpha(opacity=40); /* For IE8 and earlier */
+}
+
+#views_slideshow_controls_text_previous_slideshow_big_thumbs-block{
+  background-image: url(/sites/all/themes/fusion/brower7/prev.png);
+  left: 0px;
+}
+
+#views_slideshow_controls_text_next_slideshow_big_thumbs-block{
+  background-image: url(/sites/all/themes/fusion/brower7/next.png);
+  right: 0px;
+
+}
+
+#views_slideshow_controls_text_previous_slideshow_big_thumbs-block:hover{
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+#views_slideshow_controls_text_next_slideshow_big_thumbs-block:hover{
+  opacity:0.8;
+  filter:alpha(opacity=80); /* For IE8 and earlier */
+}
+
+tbody {
+  border-top: none !important;
+}
+
+
+.body_table {
+	font-size: 1em !important;
+}
+
+table.body-copy-size td p {
+	font-size: .8em !important;
+}
+
+.program_title {
+	font-weight:bold ;
+	position: relative;
+	top: -4px;
+}
+
+.view-videos-page .views-field-field-video-thumbnail{
+  float: left;
+  margin-right: 20px;
+}
+
+.views-slideshow-pager-field-item  {
+	display: inline-block;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.node-type-content-news-archive-item h1.title,
+#content-inner h1 {
+    color: #499EC4;
+    font-size: 2em;
+    font-weight: normal;
+    line-height: 1em;
+    margin: 0 0 0.65em;
+}
+
+h2 {
+    font-size: 1.5em;
+    line-height: 1.3em;
+    margin-bottom: 0.667em;
+    margin-top: 0.667em;
+}
+
+.field-name-field-author {
+	font-style: italic;
+}
+
+.field-name-field-author:before {
+ 
+}
+
+body.visit h1,
+li#menu-138-1 a.menuparent:hover,
+li#menu-138-1 a.active,
+.main-menu-inner ul.sf-menu li.sf-item-2 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-2 ul li ul li a:hover,
+body.visit .content-inner a,
+.bright-green {
+	color: #4AAA48 !important;
+}
+
+body.visit .menu-block-1 ul.menu li.active {
+	background-color: #4AAA48 !important;
+}
+
+body.exhibitions h1,
+li#menu-1410-1 a.menuparent:hover,
+li#menu-1410-1 a.active,
+.main-menu-inner ul.sf-menu li.sf-item-3 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-3 ul li ul li a:hover,
+body.exhibitions .content-inner a,
+.pinkish {
+	color: #E80480 !important;
+}
+body.exhibitions .menu-block-1 ul.menu li.active {
+	background-color: #E80480 !important;
+}
+
+body.programs h1,
+li#menu-1274-1 a.menuparent:hover, 
+li#menu-1274-1 a.active,
+.main-menu-inner ul.sf-menu li.sf-item-4 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-4 ul li ul li a:hover,
+body.programs .content-inner a,
+.program-title,
+.greenish {
+	color: #94A53A !important;
+}
+body.programs .menu-block-1 ul.menu li.active {
+	background-color: #94A53A !important;
+}
+
+body.rentals h1,
+li#menu-139-1 a.menuparent:hover,   /* old rentals main page */
+li#menu-139-1 a.active,             /* old rentals main page */
+li#menu-1786-1 a.menuparent:hover,  /* 20140429 rentals main page */
+li#menu-1786-1 a.active,           /* 20140429 rentals main page */
+.main-menu-inner ul.sf-menu li.sf-item-5 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-5 ul li ul li a:hover,
+body.rentals .content-inner a,
+.reddish {
+	color: #F15624 !important;  
+}
+body.rentals .menu-block-1 ul.menu li.active {
+	background-color: #F15624 !important;
+}
+
+body.rentals .menu-block-1 ul.menu li.active ul {
+	background-color: #Fff !important;
+}
+
+body.building h1,
+li#menu-140-1 a.menuparent:hover,
+li#menu-140-1 a.active,
+.main-menu-inner ul.sf-menu li.sf-item-6 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-6 ul li ul li a:hover,
+body.building .content-inner a,
+.orange {
+	color: #F29C2B !important;
+}
+body.building .menu-block-1 ul.menu li.active {
+	background-color: #F29C2B !important;
+}
+
+body.tenants h1,
+li#menu-1272-1 a.menuparent:hover,
+li#menu-1272-1 a.active,
+.main-menu-inner ul.sf-menu li.sf-item-7 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-7 ul li ul li a:hover,
+body.tenants .content-inner a,
+.tealish {
+	color: #2BADA4 !important;
+}
+body.tenants .menu-block-1 ul.menu li.active {
+	background-color: #2BADA4 !important;
+}
+
+body.donate h1,
+body.about h1,
+.main-menu-inner ul.sf-menu li.sf-item-8 a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-8 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-8 ul li ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-1 a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-1 ul li a:hover,
+.main-menu-inner ul.sf-menu li.sf-item-1 ul li ul li a:hover,
+body.donate .content-inner a,
+body.about .content-inner a  {
+	color: #499EC4 !important;
+}
+body.donate .menu-block-1 ul.menu li.active,
+body.about .menu-block-1 ul.menu li.active {
+	background-color: #499EC4 !important;
+}
+
+
+li#menu-34-1 ul li a.menuparent:hover,
+li#menu-70-1 ul li a.menuparent:hover,
+li#menu-34-1 ul li a.menuparent:current,
+li#menu-70-1 ul li a.menuparent:current,
+li#menu-34-1 ul li a.active,
+li#menu-70-1 ul li a.active,
+.page-visit .content-inner a,
+ {
+	color: #499EC4 !important;
+}
+
+.menu-block-1 ul.menu li:hover{
+	background: #e5e5e4 !important;
+}
+
+
+
+.view-slideshow-small-right {
+	float: right;
+	padding-left: 10px;
+}
+
+.view-slideshow-small-left {
+	float: left;
+	padding-right: 10px;
+}
+
+.program_title,
+.view-videos-page .views-field-title .field-content {
+	font-weight: bold;
+	color: #499ec4;
+	text-decoration: none;
+}
+
+#content-inner p, 
+#content-inner ul {
+    color: #2C2C2C;
+    font-size: 1em;
+    line-height: 1.3em;
+    margin-top: 0;
+    padding: 0;
+}
+
+#content-inner a {
+    color: #499EC4;
+    text-decoration: underline;
+}
+
+div.messages,
+div.error,
+error,
+h1.title {
+	display: none !important;
+}
+
+.node-type-content-news-archive-item h1.title {
+	display: block !important;
+}
+
+table#staff {
+	width: 570px;
+}
+
+table#staff tr {
+	margin-bottom: 15px;
+}
+
+table#staff td {
+	padding-right: 15px;
+	font-size: 1em;
+}
+
+.view-in-the-news .views-row {
+	margin-bottom: 35px;
+}
+
+.view-in-the-news .views-field-field-publication {
+	font-weight: bold;
+	font-size: .9em;
+	line-height: 1.1em;
+}
+
+.view-in-the-news .views-field-field-publication-date {
+	padding-bottom: 5px;
+}
+
+.view-in-the-news .views-field-title .field-content a{
+	font-size: 1.3em;
+	line-height: 1.35em;
+	text-decoration: none !important;
+}
+
+#sidebar-first-inner,
+#main-group {
+	margin-top: 20px;
+}
+
+.block {
+	margin-bottom: 0px;
+}
+
+#block-block-19 p{
+  	font-size: 1.3em;
+  	line-height: 1.45em;
+  	color: #45c2de;
+}
+
+#main-menu-inner {
+	background: #313131;
+	margin-left: 10px;
+}
+
+#header-site-info {
+	line-height: 60%;
+}
+
+#pid-home #content-region  h1 {
+	display: none;
+}
+
+#pid-home #node-bottom {
+	padding: 0px;
+	margin: 0px;
+}
+
+#postscript-top-inner .block {
+	float: left;
+	display: inline;
+	width: 181px;
+	padding-left: 16px;
+}
+
+#postscript-top-inner #block-block-4 {
+	padding-left: 0px !important;
+}
+
+#postscript-top-inner .block h1{
+	text-transform: uppercase;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#postscript-top-inner .block p{
+	padding: 0px;
+	margin: 0px;
+}
+
+.menu-block-1 ul.menu {
+	list-style: none none none !important;
+	padding-left: 0em !important;
+	margin-left: 0em !important;	
+}
+
+.menu-block-1 ul.menu li.leaf {
+	list-style-image: none !important;
+	list-style-type: none !important;
+	padding-left: 1em !important;
+	margin-right: 1em !important;
+}
+
+.menu-block-1 ul.menu li a {
+	text-decoration: none;
+}
+
+#node-243 {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}
+
+/* reservation calendar */
+
+.node-type-reservation h1.title {
+	display: block !important;
+}
+
+.node-type-reservation div.node {
+	margin-bottom:0;
+}
+
+.node-type-reservation .node-bottom {
+	margin-top:0;
+}
+
+.node-type-reservation .content-inner {
+	margin-bottom:50px;
+}
+
+#calendar-calendar td {
+	font-size:1em;
+}
+
+.page-reservations-calendar #content-inner .calendar a {
+	color:#ff9b27;
+}
+
+.page-reservations-calendar #multi-day-container,
+.page-reservations-calendar .header-body-divider,
+.page-reservations-calendar #content-region-inner .action-links {
+	display:none;
+}
+
+.page-reservations-calendar #single-day-container {
+	border-right:1px solid #CCC;
+}
+
+.page-node-add-reservation div.messages, .error, h1.title, 
+.node-type-reservation div.messages, .error, h1.title {
+	display:block !important;
+}
+
+.view .date-nav-wrapper .date-prev a {
+	border-right:2px solid #000;
+}
+
+/* guestbook stuff */
+
+body.webform {
+	background: #c4dd89 !important;
+}
+
+#guestbook {
+	width: 100%;
+    padding-left: 100px;
+	height:860px;
+	background-image: url('/files/dbc_guestbook_background.png');
+	background-repeat:no-repeat;
+    background-attachment:fixed;
+	text-align: center;
+	font-size:90px;
+	letter-spacing: 1px;
+	line-height:100px; 
+    font-family:'Bell MT W01';
+}
+
+#guestbook h1{
+  font-size: 0px;
+}
+
+#guestbook .form-required{
+	display: none;
+}
+
+#guestbook .form-checkbox{
+  height: 22px;
+  width: 22px;
+}
+
+#guestbook #edit-next,
+#guestbook #node-1050 #edit-submit{
+
+        width: 447px;
+        height: 44px;
+        text-indent: -99999px;
+        background: url('/files/dbc_guestbook_tell_us.png') 0 0 no-repeat;
+        border: none;
+}
+
+#guestbook #edit-next:hover{
+        background: url('/files/dbc_guestbook_tell_us-hover.png') 0 0 no-repeat;     
+}
+
+
+#guestbook #edit-previous{
+    left: 500px;
+    position: absolute;
+    top: 520px;
+        width: 182px;
+        height: 31px;
+        text-indent: -99999px;
+        background: url('/files/dbc_guestbook_previous.png') 0 0 no-repeat; 
+        border: none;
+
+}
+
+#guestbook #edit-previous:hover{
+        background: url('/files/dbc_guestbook_previous-hover.png') 0 0 no-repeat;     
+}
+
+#guestbook #node-1051 #edit-submit{
+   left: 700px;
+    position: absolute;
+    top: 565px;
+
+        width: 83px;
+        height: 26px;
+        text-indent: -99999px;
+        background: url('/files/dbc_guestbook_submit.png') 0 0 no-repeat;
+        border: none;
+        
+}
+
+#guestbook #edit-submit:hover{
+        background: url('/files/dbc_guestbook_submit-hover.png') 0 0 no-repeat;     
+}
+
+#webform-component-clear_all {
+  height: 10px;
+  overflow:hidden;
+}
+
+#guestbook .resizable-textarea,
+#webform-component-test,
+#webform-component-what_inspired_you_here_today,
+#webform-component-what_is_the_primary_reason_for_your_visit_to_the_brower_center {
+    width: 850px;
+
+}
+#webform-component-what_inspired_you_here_today {
+   padding-top: 100px;
+}
+
+#guestbook #edit-submitted-what-inspired-you-here-today-wrapper.form-item label{
+   font-weight: lighter !important;
+}
+
+#guestbook #webform-client-form-1021 .webform-component-select label,
+#guestbook #webform-client-form-1051 .webform-component-select label,
+#guestbook #webform-component-test,
+#guestbook #webform-component-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one label,
+#guestbook #webform-component-if-you-selected-other-please-share-what-brought-you-here-today label{
+  font-size: 24px;
+  line-height: 30px;
+  text-align: left;
+      width: 850px;
+}	
+	
+#guestbook p {
+	padding-bottom: 0px;
+}
+ 
+#guestbook .form-item, 
+#guestbook .form-checkboxes, 
+#guestbook .form-radios {
+    margin: 20px 0;
+
+}
+#guestbook .form-checkboxes .form-item,
+#guestbook .form-text{
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+  margin: 0px;
+}
+
+#guestbook .form-text{
+	float: left;
+	width: 850px;
+}
+
+#guestbook #edit-submitted-what-inspired-you-here-today{
+	width: 850px;
+}
+
+#guestbook textarea#edit-submitted-what-inspired-you-here-today{
+	color: #666;
+	font-style: normal;
+	font-size: 26px;
+	line-height: 32px;
+}
+
+
+#guestbook #edit-submitted-if-you-selected-other-please-share-what-brought-you-here-today,
+#guestbook #edit-submitted-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one{
+	color: #666;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+#guestbook #edit-submitted-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one{
+	margin-bottom: 20px;
+}
+
+/* end guestbook stuff */
+
+
+  #mission /* The mission statement of the site (displayed on homepage) */
+  {
+	color: #313131;
+	font-size: 1.1em;
+	line-height: 1.273em;
+	padding: 14px;
+  }
+  
+    div.messages /* Important messages (status, warning, and error) for the user */
+  {
+    margin: 0 1em 5px 1em;
+    border: 2px solid #ccc;
+    padding: 5px;
+    color: #000;
+    background-color: #fff;
+    font-style: italic;
+  }
+  
+    #content-area /* Wrapper for the actual page content */
+  {
+	padding-top: 23px;	
+	padding-left: 11px;
+	padding-right: 50px;
+  }
+  
+  #content-area h1
+{
+	color: #499ec4;
+	font-size: 2.0em;
+	font-weight: normal;
+	line-height: 1.0em;
+	margin: 0 0 0.65em 0;
+}
+
+#content-area h2
+{
+	color: black;
+}
+#content-area a
+{
+	color: #499ec4;
+	text-decoration: underline;
+}
+
+#content-area p, #content-area ul
+{
+	color: #2c2c2c;
+	font-size: 1.2em;
+	line-height: 1.5em;
+	padding: 0;
+	margin-top: 0;
+}
+#content-area ul
+{padding-left: 1.6em;}
+
+#content-area ul ul, #content-area ul p
+{
+	font-size: 1.0em;
+}
+
+  #footer-message /* Wrapper for the footer message from Drupal's "Site information"
+                     and for any blocks placed in the footer region */
+  {
+	background-color: #f0f0f0;
+	color: black;
+	font-size: 1.13em;
+	line-height: 2.73em;
+	padding-left: 14px;
+  }
+
+td
+{
+	font-family: Helvetica, Arial, Tahoma, Verdana, "Bitstream Vera Sans", sans-serif;
+	font-size: 1.2em;
+	padding: 0px;
+}
+
+tr.odd
+{
+	background-color: white;
+}
+
+tr.even
+{
+	background-color: #f8f8f8;
+}
+
+th, tbody th, thead th
+{
+	font-family: Helvetica, Arial, Tahoma, Verdana, "Bitstream Vera Sans", sans-serif;
+	font-size: 1.2em;
+	text-align: left;
+}
+
+
+
+table#exhibition-events-table,
+table#exhibition-events-table td {
+	font-size: 12px;
+	padding: 0px 10px;
+	margin: 0px;
+}
+
+table#exhibition-events-table td {
+	vertical-align: top;
+}
+
+table#exhibition-events-table p{
+	font-size: 12px;
+	padding: none !important;
+	margin: none !important;
+	padding-bottom: none !important;
+	margin-bottom: none !important;
+}
+
+table#exhibition-events-table h5{
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 1.5em;
+	color: #006d9b;
+	padding: none !important;
+	padding: 0em;
+	margin: 0em;
+}
+
+body.webform {
+	background: #c4dd89 !important;
+}
+
+#guestbook {
+	width: 100%;
+    padding-left: 100px;
+	height:860px;
+	background-image: url('/files/dbc_guestbook_background.png');
+	background-repeat:no-repeat;
+    background-attachment:fixed;
+	text-align: center;
+	font-size:90px;
+	letter-spacing: 1px;
+	line-height:100px; 
+    font-family:'Bell MT W01';
+}
+
+#guestbook h1{
+  font-size: 0px;
+}
+
+#guestbook .form-required{
+	display: none;
+}
+
+#guestbook .form-checkbox{
+  height: 22px;
+  width: 22px;
+}
+
+#guestbook #edit-next,
+#guestbook #node-1050 #edit-submit{
+
+        width: 447px;
+        height: 44px;
+        text-indent: -99999px;
+        background: url('/files/dbc_guestbook_tell_us.png') 0 0 no-repeat;
+        border: none;
+}
+
+#guestbook #edit-next:hover{
+        background: url('/files/dbc_guestbook_tell_us-hover.png') 0 0 no-repeat;     
+}
+
+
+#guestbook #edit-previous{
+    left: 330px;
+    position: absolute;
+    top: 606px;
+        width: 182px;
+        height: 31px;
+        text-indent: -99999px;
+        background: url('/files/dbc_guestbook_previous.png') 0 0 no-repeat; 
+        border: none;
+
+}
+
+#guestbook #edit-previous:hover{
+        background: url('/files/dbc_guestbook_previous-hover.png') 0 0 no-repeat;     
+}
+
+
+
+
+#guestbook #node-1021 #edit-submit{
+   left: 600px;
+    position: absolute;
+    top: 606px;
+
+        width: 83px;
+        height: 26px;
+        text-indent: -99999px;
+        background: url('/files/dbc_guestbook_submit.png') 0 0 no-repeat;
+        border: none;
+        
+}
+
+#guestbook #node-1021 #edit-submit:hover{
+        background: url('/files/dbc_guestbook_submit-hover.png') 0 0 no-repeat;     
+}
+
+#webform-component-clear_all {
+  height: 10px;
+  overflow:hidden;
+}
+
+#guestbook .resizable-textarea,
+#webform-component-test,
+#webform-component-what_inspired_you_here_today,
+#webform-component-what_is_the_primary_reason_for_your_visit_to_the_brower_center {
+    width: 850px;
+
+}
+#webform-component-what_inspired_you_here_today {
+   padding-top: 100px;
+}
+
+#guestbook #edit-submitted-what-inspired-you-here-today-wrapper.form-item label{
+   font-weight: lighter !important;
+}
+
+#guestbook #webform-client-form-1021 .webform-component-select label,
+#guestbook #webform-client-form-1051 .webform-component-select label,
+#guestbook #webform-component-what_is_the_primary_reason_for_your_visit_to_the_brower_center,
+#guestbook #webform-component-what-is-the-primary-reason-for-your-visit-to-the-brower-center,
+#guestbook #webform-component-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one label,
+#guestbook #edit-submitted-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one-wrapper label,
+#guestbook #webform-component-if-you-selected-other-please-share-what-brought-you-here-today label,
+#guestbook #webform-component-if_you_selected_other_please_share_what_brought_you_here_today label{
+  font-size: 24px;
+  line-height: 30px;
+  text-align: left;
+      width: 850px;
+}	
+	
+#guestbook #webform-component-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one {
+	padding-bottom: 35px;
+}	
+	
+#guestbook p {
+	padding-bottom: 0px;
+}
+ 
+#guestbook .form-item, 
+#guestbook .form-checkboxes, 
+#guestbook .form-radios {
+    margin: 20px 0;
+
+}
+#guestbook .form-checkboxes .form-item,
+#guestbook .form-text{
+  font-size: 20px;
+  line-height: 24px;
+  text-align: left;
+  margin: 0px;
+}
+
+#guestbook .form-text{
+	float: left;
+	width: 850px;
+}
+
+#guestbook #edit-submitted-what-inspired-you-here-today{
+	width: 850px;
+}
+
+#guestbook textarea#edit-submitted-what-inspired-you-here-today{
+	color: #666;
+	font-style: normal;
+	font-size: 26px;
+	line-height: 32px;
+}
+
+
+#guestbook #edit-submitted-if-you-selected-other-please-share-what-brought-you-here-today,
+#guestbook #edit-submitted-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one{
+	color: #666;
+	font-style: normal;
+	font-size: 18px;
+	line-height: 22px;
+}
+
+#guestbook #edit-submitted-if-you-were-visiting-or-meeting-with-a-resident-organization-upstairs-please-let-us-know-which-one{
+	margin-bottom: 20px;
+}
+
+
+table.donor_names tr td,
+table.donor_names tr td p {
+	font-size: 1.1em !important;
+}
+
+.view-content-upcoming-programs,
+.view-content-upcoming-programs p {
+	font-family: Helvetica,Arial,Tahoma,Verdana,"Bitstream Vera Sans",sans-serif;
+}
+
+/** dean's additions/overrides - end **/
+
+/* Basic Typography & Colors
+-------------------------------------------------------------- */
+/* Add general site styling here for typography and background */
+body {
+  font-family: Helvetica,Arial,Tahoma,Verdana,"Bitstream Vera Sans",sans-serif !important;
+  font-size: 75%;   /* also set in brower7.info: settings[base-font-size] = font-size-12 */
+  color: #424242;
+}
+
+/* Default link styles - separate a:visited for a different visited link style */
+a,
+a:link,
+a:visited {
+  color:	#424242;
+  text-decoration: underline;
+}
+
+/* Hover/active link styles. Don't forget :focus for accessibility */
+a:hover,
+a:focus,
+a:active {
+}
+
+.button a,
+.button a:link,
+.button a:visited,
+a.button,
+a.button:link,
+a.button:visited {
+	
+}
+
+.button a:hover,
+.button a:active,
+a.button:hover,
+a.button:active {
+	
+}
+
+
+/* Specific Typography
+-------------------------------------------------------------- */
+#site-name {
+  font-size: 300%;
+  font-weight: normal;
+  line-height: 150%;
+  margin: 0;
+  margin-top: 10px;
+}
+
+.footer-message {
+  font-size: 90%;
+}
+
+
+/* HTML Elements
+-------------------------------------------------------------- */
+body {
+}
+
+/* Site Info
+-------------------------------------------------------------- */
+/* Wrapper around logo, site name, and slogan */
+.header-site-info span {
+  display: block;
+}
+
+/* Add float here to put logo and site name side by side, also add margins as
+  needed */
+#logo {
+  float: left;
+  margin-right: 20px;
+}
+
+/* Link and hover styles for site name */
+#site-name a:link,
+#site-name a:visited,
+#site-name a:hover,
+#site-name a:active {
+}
+
+/* Typography for site slogan */
+#slogan {
+}
+
+
+/* Regions
+
+  Classes (.region-name) should always be used instead of IDs (#region-name) so
+  that skin styles can override them with a class later
+-------------------------------------------------------------- */
+
+/* All Regions
+-------------------------------------------------------------- */
+/* By default this wrapper is set to 100% width and centered -- override here to
+  narrow wrapper or align left or right */
+.page {
+}
+
+/* The 0 values here remove padding and spacing at the bottom of the page.
+  Remove to add a gap at the very bottom of the page */
+.page-inner {
+  border: 0;
+  margin-bottom: 0;
+  padding: 0;
+}
+
+
+/* Header Regions
+-------------------------------------------------------------- */
+/* Header Top region to the bottom of Header region */
+/* For full-width header background, add background image/color here */
+.header-group-wrapper {
+}
+
+.header-group {
+}
+
+/* Header Top region which sits above the header */
+/* Works well with inline login or inline menu block style */
+.header-top-wrapper {
+}
+
+.header-top {
+}
+
+
+/* Main Menu
+/-------------------------------------------------------------- */
+/* Add general styles for main menu here, such as typography, borders, floats,
+  or spacing above/below */
+.main-menu {
+  width: 784px !important;
+}
+
+/* These styles work well with the Superfish module. 
+ * http://www.drupal.org/project/superfish */
+ 
+/* styles for Superfish main menu */
+.main-menu-inner ul.sf-menu {
+}
+
+/* Link style for top level menu items, add padding here */
+.main-menu-inner ul.sf-menu a,
+.main-menu-inner ul.sf-menu a:visited  {
+	padding: .75em .87em;
+}
+
+.main-menu-inner ul.sf-menu a:hover,
+.main-menu-inner ul.sf-menu a:active,
+.main-menu-inner ul.sf-menu a:focus {
+	color: #499ec4;
+}
+
+/* These are the top level menu items, add border-right here for separators */
+.main-menu-inner ul.sf-menu li {
+	line-height: 0.5em;
+}
+
+.main-menu-inner ul.sf-menu li a {
+	color: #fff;
+	text-transform: uppercase;
+	font-size: .75em;
+}
+
+/* Add border-right: 0; here to remove separator on last menu item */
+.main-menu-inner ul.sf-menu li.last {
+}
+
+/* Style for container of dropdown, add background or border */
+.main-menu-inner ul.sf-menu ul {
+	top: 20px;
+}
+
+/* Style for individual dropdown menu items, add border-bottom for separators */
+.main-menu-inner ul.sf-menu li li {
+  background-color: #313131;
+  line-height: .8em;
+}
+
+.main-menu-inner ul.sf-menu li li.last {
+
+}
+
+.main-menu-inner ul.sf-menu li li li {
+}
+
+/* Style for hover of dropdown menu items (add background-color here) */
+.main-menu-inner ul.sf-menu li ul li:hover,
+.main-menu-inner ul.sf-menu li ul li.sfHover {
+	color: #499ec4;
+}
+
+
+/*  Preface Regions
+-------------------------------------------------------------- */
+/* The Preface Top region sits between the header and the Main Area
+ (columns, sidebars, and main content).  The Preface Bottom region
+ is inside the Main Area. */
+.preface-top-wrapper {
+}
+
+.preface-top {
+}
+
+.preface-top-inner {
+}
+
+.preface-bottom {
+}
+
+.preface-bottom-inner {
+}
+
+
+/*  Main Area (content + sidebars + preface bottom + postscript top)
+-------------------------------------------------------------- */
+.main-wrapper {
+}
+
+
+/* Sidebar Regions
+-------------------------------------------------------------- */
+/* Sidebar widths can be controlled through theme settings */
+.sidebar-first {
+}
+
+.sidebar-second {
+}
+
+
+/* Content Regions
+-------------------------------------------------------------- */
+.content {
+}
+
+.content-inner {
+}
+
+/* This region only appears on full node pages. It's useful for ads or other
+  content between the body of the node and its comments */
+.node-bottom {
+}
+
+/*  Postscript & Footer Regions
+-------------------------------------------------------------- */
+.postscript-top {
+}
+
+.postscript-top-inner {
+}
+
+.postscript-bottom-wrapper {
+}
+
+.postscript-bottom {
+}
+
+.postscript-bottom-inner {
+}
+
+.footer-wrapper {
+}
+
+.footer {
+}
+
+.footer-inner {
+}
+
+
+/* Page titles
+/-------------------------------------------------------------- */
+/* Page and full node titles */
+h1.title {
+}
+
+
+/* Default node styles
+/-------------------------------------------------------------- */
+/* Change unpublished and preview colors for dark background themes */
+.node-unpublished {
+  background-color: #fff4f4;
+}
+.preview .node {
+  background-color: #ffffea;
+}
+
+/* Typography for node titles */
+h2.title {
+}
+
+/* Colors and styles for linked node titles, ie. teaser listing at /node */
+h2.title a:link,
+h2.title a:visited {
+}
+
+h2.title a:hover,
+h2.title a:focus,
+h2.title a:active {
+}
+
+/* Separators and padding for node teasers */
+.node-teaser {
+}
+
+/* Author/date info */
+.meta {
+}
+
+.submitted {
+}
+
+/* Links for nodes (taxonomy, commenting, read more, etc) */
+.node ul.links li {
+}
+.node ul.links a {
+}
+
+/* Only more/read more links */
+div.node .read-more a,
+div.node .more-link a {
+}
+
+/* Drupal Messages
+/-------------------------------------------------------------- */
+/* General style for all errors/messages (border, padding, etc.) */
+div.content-messages div.messages,
+div.content-help div.help {
+}
+
+/* Status messages: green */
+div.content-messages-inner div.status {
+}
+
+/* Warning messages: yellow */
+div.content-messages-inner div.warning {
+}
+
+/* Error messages: red */
+div.content-messages-inner div.error {
+}
+
+/* Help messages: blue */
+div.content-help-inner div.help {
+}
+
+/* Error that appears when a required form field is not filled out */
+.form-item input.error,
+.form-item textarea.error,
+.form-item select.error {
+  border: 1px solid #aa1144;
+}
+
+/* "New" text and required form field asterisk (default = red) */
+.marker,
+.form-required {
+  color: #aa1144;
+}
+
+
+/* Default block title styles
+/-------------------------------------------------------------- */
+h2.block-title {
+}
+
+
+/* Breadcrumbs
+-------------------------------------------------------------- */
+.breadcrumbs {
+}
+
+.breadcrumbs a:link,
+.breadcrumbs a:visited {
+}
+
+
+/* Tab Menus
+/-------------------------------------------------------------- */
+#content-tabs {
+  background-color: transparent;
+  float: left; /* LTR */
+  margin: 20px 0;
+  padding: 0;
+}
+
+#content-tabs ul.primary,
+#content-tabs ul.secondary {
+  border-bottom: 1px solid #000;
+  clear: both;
+  float: left; /* LTR */
+  margin: 0;
+  padding: 0 10px;
+}
+
+#content-tabs ul.secondary {
+  border-bottom: 1px solid #555;
+  margin-top: 10px;
+  text-transform: lowercase;
+}
+
+#content-tabs ul.primary li,
+#content-tabs ul.secondary li {
+  border-style: none;
+  display: inline;
+  float: left; /* LTR */
+  list-style: none;
+  margin: 0 10px;
+  padding: 0;
+}
+
+#content-tabs ul.primary li a:link,
+#content-tabs ul.primary li a:visited,
+#content-tabs ul.secondary li a:link,
+#content-tabs ul.secondary li a:visited {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  float: left; /* LTR */
+  font-weight: bold;
+  margin: 0;
+  padding: 0 0 6px 0;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+#content-tabs ul.secondary li a:link,
+#content-tabs ul.secondary li a:visited {
+  color: #555;
+}
+
+#content-tabs ul.primary li a.active:link,
+#content-tabs ul.primary li a.active:visited {
+  border-bottom: 4px solid #000;
+  color: #555;
+  padding-bottom: 2px;
+}
+
+#content-tabs ul.secondary li a.active:link,
+#content-tabs ul.secondary li a.active:visited {
+  border-bottom: 4px solid #555;
+  color: #777;
+  padding-bottom: 2px;
+}
+
+#content-tabs ul.primary li a:hover,
+#content-tabs ul.primary li a:focus,
+#content-tabs ul.secondary li a:hover,
+#content-tabs ul.secondary li a:focus {
+  border-bottom: 4px solid #777;
+  color: #777;
+  padding-bottom: 2px;
+}
+
+/* Pagers
+-------------------------------------------------------------- */
+ul.pager {
+}
+
+ul.pager li {
+}
+
+ul.pager a,
+ul.pager li.pager-current {
+  border-color: #333;
+}
+
+ul.pager li.pager-current {
+  background-color: #777;
+  color: #fff;
+}
+
+ul.pager a:hover,
+ul.pager a:active,
+ul.pager a:focus {
+  background-color: #777;
+  border-color: #333;
+  color: #fff;
+}
+
+/* Forms
+/-------------------------------------------------------------- */
+/* Typography and backgrounds for all form buttons */
+form input.form-submit {
+  margin: 2px;
+  padding: 3px 5px;
+}
+
+/* Hover style for form buttons */
+form input.form-submit:hover,
+form input.form-submit.hover,
+form input.form-submit:focus {
+}
+
+/* Typography, background, borders, padding for form fields */
+.form-item input,
+.form-item select,
+.form-item textarea {
+}
+
+/* Remove backgrounds and border on radios and checkboxes */
+.form-item .form-radio,
+.form-item .form-checkbox {
+  background: none;
+  border: none !important;
+}
+
+/* Fieldset wrapper around groups of form elements -- add border here */
+fieldset {
+}
+
+/* Typography and spacing for legend of fieldsets */
+fieldset legend {
+}
+
+/* Link style for legend of fieldsets */
+fieldset legend,
+legend.collapse-processed,
+legend.collapse-processed a:link,
+legend.collapse-processed a:visited {
+}
+
+/* Custom icons on (open) collapsible fieldsets */
+html.js fieldset.collapsible legend a:link,
+html.js fieldset.collapsible legend a:visited {
+}
+
+/* Custom icons on (closed) collapsible fieldsets */
+html.js fieldset.collapsed legend a:link,
+html.js fieldset.collapsed legend a:visited {
+}
+
+
+/* Tables
+-------------------------------------------------------------- */
+table {
+}
+
+/* Body of tables */
+tbody {
+  border-top: 1px solid #ccc;
+}
+
+/* Header of tables */
+thead th,
+th {
+  border-bottom: 3px solid #ccc;
+}
+
+tbody th {
+  border-bottom: 1px solid #ccc;
+}
+
+/* Alternating row background styles */
+tr.even,
+tr.even td {
+  background-color: #eee;
+  border-bottom: 1px solid #ccc;
+}
+
+tr.odd,
+tr.odd td {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+td.active {
+}
+
+tr.drag td,
+tr.drag-previous td {
+  color: #000;
+}
+
+
+/* Maintenance Page
+/-------------------------------------------------------------- */
+/* Maintenance page tpl file in Fusion Core has simplified layout, but you can
+  also add specific styles, such as a background, just for your offline page */
+.in-maintenance  {
+}
+
+
+/*--------------------------------------------------------------*/
+/* Module styles
+/-------------------------------------------------------------- */
+
+
+/* Book
+/-------------------------------------------------------------- */
+.book-navigation .menu {
+  border-top: 1px solid #ccc;
+}
+
+.book-navigation .page-links {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+
+/* Comments
+/-------------------------------------------------------------- */
+/* Style for each individual comment */
+div.comment {
+  padding: 0px;
+}
+
+/* Subject (title) of each comment */
+div.comment h3.title {
+}
+
+/* Links (edit, reply, delete) for each comment */
+div.comment div.links a,
+div.comment ul.links a {
+}
+
+/* Alternating styles for even/odd comments */
+.comments .comment.odd {
+  background-color: #fff;
+}
+
+.comments .comment.even {
+  background-color: #eee;
+}
+
+/* A special highlight style for a comment by the author of the node */
+.comments div.comment-by-author {
+  background-color: #ddd;
+}
+
+/* Comment signatures */
+.signature {
+  border-top: 1px solid #d6ddb9;
+}
+
+/* User avatars in comments */
+.comment-wrapper .picture img {
+}
+
+
+/* Forum
+/-------------------------------------------------------------- */
+#forum .description {
+}
+
+.forum-topic-navigation {
+  border-top: 1px solid #888;
+  border-bottom: 1px solid #888;
+}
+
+
+/* Poll
+/-------------------------------------------------------------- */
+div.poll div.bar {
+  background-color: #ddd;
+}
+
+div.poll div.bar div.foreground {
+  background-color: #999;
+}
+
+
+/* Profiles
+/-------------------------------------------------------------- */
+.profile .picture {
+  float: none;
+}
+
+/* Styles for sub-headings on user profiles */
+.profile dt {
+  background-color: #ccc;
+}
+

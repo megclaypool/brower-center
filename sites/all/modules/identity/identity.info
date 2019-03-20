@@ -1,0 +1,6 @@
+name = Identity
+description = Handles ufp Identity authentication for Drupal 7.x
+core = 7.x
+version = "7.x-1.1"
+package = Security
+configure = admin/config/security/identity
